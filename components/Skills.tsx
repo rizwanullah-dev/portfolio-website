@@ -1,11 +1,9 @@
-// Skills.tsx - Single Line Animated Skills with Hero Section Background Style
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { IconType } from 'react-icons';
 
-// React Icons (same as before)
 import {
   FaHtml5,
   FaCss3Alt,
@@ -32,7 +30,6 @@ import {
   SiWebpack,
 } from 'react-icons/si';
 
-// Simplified Skills Data without categories
 const skillsData = [
   { name: 'HTML5', icon: FaHtml5 },
   { name: 'CSS3', icon: FaCss3Alt },
@@ -54,7 +51,6 @@ const skillsData = [
   { name: 'Postman', icon: SiPostman },
 ];
 
-// Single Animated Row Component
 function AnimatedSkillsRow({
   skills,
   speed = 20,
@@ -117,15 +113,12 @@ export default function Skills() {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
 
   return (
-    // Removed the bg-[#1a1a1a] to match Hero section's background approach
     <section id="skills" className="py-24">
       <div className="max-w-[1200px] mx-auto px-6">
-        {/* Original heading */}
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
           <span className="text-[#00ff88] font-mono"></span> Skills & Technologies
         </h2>
 
-        {/* Single Animated Row */}
         <div
           ref={ref}
           className={`transition-all duration-1000 ${
@@ -139,20 +132,18 @@ export default function Skills() {
           />
         </div>
 
-        {/* Reverse Direction Row for Visual Interest */}
         <div
           className={`mt-8 transition-all duration-1000 ${
             inView ? 'opacity-100 translate-y-0 delay-300' : 'opacity-0 translate-y-10'
           }`}
         >
           <AnimatedSkillsRow
-            skills={[...skillsData].reverse()} // Reversed order for visual interest
+            skills={[...skillsData].reverse()} 
             speed={20}
             direction='right'
           />
         </div>
 
-        {/* Static Grid as Fallback - Using original styling */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-20">
           {skillsData.map((skill) => (
             <div

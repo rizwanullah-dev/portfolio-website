@@ -23,7 +23,6 @@ export default function CursorTrail() {
     };
 
     const animate = () => {
-      // LERP (smooth follow)
       follower.current.x += (mouse.current.x - follower.current.x) * 0.10;
       follower.current.y += (mouse.current.y - follower.current.y) * 0.10;
 
@@ -37,7 +36,7 @@ export default function CursorTrail() {
           y: follower.current.y,
           timestamp: now
         }
-      ].slice(-40)); // keep density controlled
+      ].slice(-40)); 
 
       requestAnimationFrame(animate);
     };

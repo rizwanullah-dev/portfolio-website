@@ -1,4 +1,3 @@
-// Footer.tsx - Professional Enhancement
 'use client';
 
 export default function Footer() {

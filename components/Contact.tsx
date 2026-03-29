@@ -1,4 +1,3 @@
-// Contact.tsx - Original Background with Improved Responsiveness
 'use client';
 
 import { useState } from 'react';
@@ -52,7 +51,6 @@ export default function Contact() {
       ...formData,
       [e.target.name]: e.target.value
     });
-    // Clear error when user starts typing
     if (submitError) setSubmitError('');
   };
 
@@ -74,14 +72,11 @@ export default function Contact() {
     setSubmitError('');
 
     try {
-      // Simulate form submission
       await new Promise(resolve => setTimeout(resolve, 2000));
       
-      // Success simulation
       setSubmitSuccess(true);
       setFormData({ name: '', email: '', message: '' });
       
-      // Reset success message after 5 seconds
       setTimeout(() => {
         setSubmitSuccess(false);
       }, 5000);
@@ -93,7 +88,6 @@ export default function Contact() {
   };
 
   return (
-    // Changed background to match original style (e.g., from Skills section)
     <section id="contact" className="py-24">
       <div className="max-w-[1200px] mx-auto px-8">
         <h2 className="text-4xl md:text-5xl lg:text-3xl font-bold mb-12 text-center">

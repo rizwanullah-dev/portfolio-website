@@ -13,7 +13,6 @@ import Experience from '@/components/Experience';
 
 export default function Home() {
   useEffect(() => {
-    // Initialize particles
     if (typeof window !== 'undefined' && (window as any).particlesJS) {
       (window as any).particlesJS('particles-js', particlesConfig);
     }

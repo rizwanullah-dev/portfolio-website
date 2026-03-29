@@ -1,4 +1,3 @@
-// Navbar.tsx - Enhanced while preserving original style
 "use client";
 
 import { useState, useEffect } from "react";
@@ -78,7 +77,7 @@ export default function Navbar() {
             </span>
           </div>
 
-          {/* Desktop Menu - Your original styling preserved */}
+          {/* Desktop Menu  */}
           <ul className="hidden px-20 md:flex items-center gap-8 lg:gap-10 ml-auto">
             {navItems.map((item) => (
               <li key={item.href}>
@@ -111,7 +110,7 @@ export default function Navbar() {
             ))}
           </ul>
 
-          {/* Mobile Menu Button - Your original hamburger preserved */}
+          {/* Mobile Menu Button  */}
           <button
             aria-label="Toggle menu"
             aria-expanded={isMenuOpen}
@@ -136,7 +135,7 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Mobile Menu - Your original styling preserved */}
+        {/* Mobile Menu  */}
         <div
           className={`
             md:hidden overflow-hidden transition-all duration-300

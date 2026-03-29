@@ -1,11 +1,9 @@
-// About.tsx - Professional Enhancement
 'use client';
 
 import { useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
 
-// Updated about data with professional details
 const aboutData = {
   title: "Who I Am ?",
   description1: "Hello! I'm Rizwan Ullah, a passionate Full Stack Developer specializing in MERN and PERN stacks, based in Peshawar, Pakistan.",

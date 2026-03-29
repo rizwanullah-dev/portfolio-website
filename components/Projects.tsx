@@ -1,4 +1,3 @@
-// Projects.tsx - Original Background with Corrected Details
 'use client';
 
 import { useState, useRef } from 'react';
@@ -15,43 +14,41 @@ export default function Projects() {
       title: 'AI Website Builder',
       description: 'An AI-powered website builder that generates complete, responsive websites from user prompts. Features include automated layout generation, component structure creation, and dynamic content optimization.',
       github: 'https://github.com/Rizwan2005khan/AI-website-builder.git',
-      external: '#', // No live demo found
-      tech: ['TypeScript', 'React', 'TailwindCSS'], // Specific tech not detailed in repo
+      external: '#',
+      tech: ['TypeScript', 'React', 'TailwindCSS'], 
       category: 'AI/ML',
-      year: '2025' // Adjust based on actual project date
+      year: '2025' 
     },
     {
       title: 'Project Management Platform',
       description: 'A full-featured project management platform supporting teams, task assignments, role-based access, progress tracking, and real-time updates. Built with PERN stack and scalable backend architecture.',
       github: 'https://github.com/Rizwan2005khan/project-management.git',
-      external: '#', // No live demo found
-      tech: ['JavaScript', 'PostgreSQL', 'React', 'Prisma', 'TailwindCSS', 'Clerk', 'Inngest'], // Added from repo description
+      external: '#',
+      tech: ['JavaScript', 'PostgreSQL', 'React', 'Prisma', 'TailwindCSS', 'Clerk', 'Inngest'], 
       category: 'SaaS',
-      year: '2025' // Adjust based on actual project date
+      year: '2025' 
     },
     {
       title: 'AI Resume Generator',
       description: 'An intelligent resume builder creating ATS-optimized, professional resumes. Features include customizable templates, role-specific content generation, AI-assisted suggestions, and instant PDF exports.',
       github: 'https://github.com/Rizwan2005khan/Ai-Resume-Generator.git',
-      external: '#', // No live demo found
-      tech: ['JavaScript', 'React', 'MongoDB', 'Express', 'Node.js', 'Redux', 'TailwindCSS', 'Gamini API'], // Added from repo description
+      external: '#',
+      tech: ['JavaScript', 'React', 'MongoDB', 'Express', 'Node.js', 'Redux', 'TailwindCSS', 'Gamini API'], 
       category: 'Productivity',
-      year: '2025' // Adjust based on actual project date
+      year: '2025' 
     },
     {
       title: 'Sleep Tracker App',
       description: 'A Next.js-based sleep tracking application that helps users log sleep patterns, analyze sleep quality, and visualize insights using interactive charts.',
       github: 'https://github.com/Rizwan2005khan/Sleep-tracker-next.git',
-      external: '#', // No live demo found
-      tech: ['Next.js', 'TailwindCSS', 'Geist Font'], // Added from repo description
+      external: '#', 
+      tech: ['Next.js', 'TailwindCSS', 'Geist Font'], 
       category: 'HealthTech',
-      year: '2025' // Adjust based on actual project date
+      year: '2025' 
     }
   ];
 
-  // Removed the background gradient to match Hero section style
   return (
-    // Changed to original background style (like Hero section)
     <section id="projects" className="py-24">
       <div className="max-w-[1200px] mx-auto px-8">
         <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center">
@@ -113,7 +110,7 @@ function ProjectCard({ project, index, inView }: {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Removed top border animation for original style */}
+      
       
       {/* Project Header */}
       <div className="flex justify-between items-center mb-6"> {/* Changed items-start to items-center */}
