@@ -8,7 +8,7 @@ export default function Hero() {
     "MERN Stack Developer",
     "Full Stack Developer",
     "Problem Solver",
-    "Good Team Leading Skills",
+    "Tech Enthusiast",
   ];
 
   const [currentWord, setCurrentWord] = useState("");
@@ -17,7 +17,7 @@ export default function Hero() {
 
   useEffect(() => {
     const current = words[wordIndex];
-    const speed = isDeleting ? 60 : 120;
+    const speed = isDeleting ? 40 : 80;
 
     const timeout = setTimeout(() => {
       setCurrentWord((prev) =>
@@ -27,7 +27,7 @@ export default function Hero() {
       );
 
       if (!isDeleting && currentWord === current) {
-        setTimeout(() => setIsDeleting(true), 1200);
+        setTimeout(() => setIsDeleting(true), 1500);
       }
 
       if (isDeleting && currentWord === "") {
@@ -39,100 +39,87 @@ export default function Hero() {
     return () => clearTimeout(timeout);
   }, [currentWord, isDeleting, wordIndex]);
 
-  const handleNavClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    href: string
-  ) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-    document.querySelector(href)?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
+    const element = document.querySelector(href);
+    if (element) {
+      window.scrollTo({
+        top: element.getBoundingClientRect().top + window.scrollY - 80,
+        behavior: "smooth"
+      });
+    }
   };
 
-  const socialMediaLinks = [
-    { platform: "GitHub", url: "https://github.com/Rizwan2005khan", icon: "fab fa-github" },
-    { platform: "LinkedIn", url: "https://www.linkedin.com/in/rizwan-ullah-b74793290", icon: "fab fa-linkedin" },
-    { platform: "Facebook", url: "https://www.facebook.com/share/17rXqVgXcE", icon: "fab fa-facebook" },
+  const socialLinks = [
+    { icon: "fab fa-github", url: "https://github.com/Rizwan2005khan", label: "GitHub" },
+    { icon: "fab fa-linkedin", url: "https://www.linkedin.com/in/rizwan-ullah-b74793290", label: "LinkedIn" },
+    { icon: "fab fa-facebook", url: "https://www.facebook.com/share/17rXqVgXcE", label: "Facebook" },
   ];
 
   return (
     <section
       id="home"
-      className="
-        relative w-full
-        min-h-[100svh]
-        flex items-start
-        px-4 sm:px-6 lg:px-16
-        pt-24 sm:pt-28 lg:pt-32
-        pb-16
-        overflow-hidden
-      "
+      className="relative min-h-[100svh] flex items-center pt-20 pb-16 overflow-hidden bg-gradient-to-b from-[#0a0a0a] to-[#0f0f0f]"
     >
-      {/* Background Effects */}
+      {/* Background Glows */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-56 h-56 sm:w-64 sm:h-64 bg-emerald-500/5 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-60 h-60 sm:w-72 sm:h-72 bg-purple-500/5 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-[#00ff88]/10 rounded-full blur-[120px] animate-pulse-subtle" />
+        <div className="absolute -bottom-[10%] -right-[10%] w-[40%] h-[40%] bg-[#00ccff]/10 rounded-full blur-[120px] animate-pulse-subtle delay-1000" />
       </div>
 
-      <div className="w-full max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-20 items-start">
-
+      <div className="container relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          
           {/* TEXT CONTENT */}
-          <div className="space-y-6">
-            <h1 className="pt-6 sm:pt-8 lg:pt-10 text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight">
-            <span className="block text-gray-300">Hi, I&apos;m</span>
-            <span className="block bg-gradient-to-r from-[#00ff88] via-[#00ccff] to-[#ff0080] bg-clip-text text-transparent mt-2">
-             Rizwan Ullah
-          </span>
-          </h1>
-
-
-            <div className="h-1 w-20 bg-gradient-to-r from-[#00ff88] to-[#0088ff] rounded-full" />
-
-            {/* TYPEWRITER */}
-            <div className="min-h-[2.5rem]">
-              <p className="font-mono text-lg sm:text-2xl lg:text-3xl text-[#b0b0b0]">
-                {currentWord}
-                <span className="ml-1 text-[#00ff88] animate-blink">|</span>
-              </p>
+          <div className="space-y-8 text-center lg:text-left">
+            <div className="space-y-4">
+              <span className="inline-block px-3 py-1 text-xs font-mono tracking-widest text-[#00ff88] bg-[#00ff88]/10 rounded-full border border-[#00ff88]/20">
+                AVAILABLE FOR HIRE
+              </span>
+              <h1 className="leading-tight">
+                <span className="block text-gray-400 font-light">Hi, I&apos;m</span>
+                <span className="text-gradient-primary">Rizwan Ullah</span>
+              </h1>
+              
+              <div className="min-h-[2.5rem] flex items-center justify-center lg:justify-start">
+                <p className="font-mono text-xl sm:text-2xl text-gray-300">
+                  {currentWord}<span className="text-[#00ff88] animate-blink ml-1">|</span>
+                </p>
+              </div>
             </div>
 
-            {/* DESCRIPTION */}
-            <p className="text-sm sm:text-base lg:text-lg text-[#b0b0b0] leading-relaxed max-w-xl">
-              Crafting digital experiences with clean code and innovative solutions.
-              Passionate about building scalable applications that solve real-world problems.
+            <p className="text-[#a0a0a0] leading-relaxed max-w-xl mx-auto lg:mx-0">
+              Transforming complex ideas into elegant digital solutions. Specialist in the 
+              <span className="text-white px-2">MERN Stack</span> 
+              building scalable, high-performance web applications with a focus on user experience.
             </p>
 
-            {/* BUTTONS */}
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
+            <div className="flex flex-wrap justify-center lg:justify-start gap-4">
               <a
                 href="#contact"
                 onClick={(e) => handleNavClick(e, "#contact")}
-                className="flex justify-center items-center px-6 py-4 bg-gradient-to-r from-[#00ff88] to-[#0088ff] text-[#0a0a0a] font-semibold rounded-lg hover:-translate-y-1 transition-all min-w-full sm:min-w-[200px]"
+                className="px-8 py-4 bg-[#00ff88] text-[#0a0a0a] font-bold rounded-xl hover:shadow-[0_0_25px_rgba(0,255,136,0.4)] hover:-translate-y-1 transition-all flex items-center gap-2"
               >
-                🚀 Let&apos;s Connect
+                <i className="fas fa-paper-plane" /> Let&apos;s Connect
               </a>
-
               <a
                 href="#projects"
                 onClick={(e) => handleNavClick(e, "#projects")}
-                className="flex justify-center items-center px-6 py-4 border-2 border-[#00ff88] text-[#00ff88] rounded-lg hover:bg-[#00ff88] hover:text-[#0a0a0a] hover:-translate-y-1 transition-all min-w-full sm:min-w-[200px]"
+                className="px-8 py-4 border border-white/10 text-white font-bold rounded-xl hover:bg-white/5 hover:-translate-y-1 transition-all flex items-center gap-2"
               >
-                💼 View Projects
+                <i className="fas fa-code" /> View Projects
               </a>
             </div>
 
-            {/* SOCIAL ICONS */}
-            <div className="flex gap-4 pt-4">
-              {socialMediaLinks.map((link) => (
+            <div className="flex justify-center lg:justify-start gap-6">
+              {socialLinks.map((link) => (
                 <a
-                  key={link.platform}
+                  key={link.label}
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-[#00ff88] text-xl p-2 transition"
-                  aria-label={link.platform}
+                  className="text-gray-500 hover:text-[#00ff88] text-xl transition-colors"
+                  aria-label={link.label}
                 >
                   <i className={link.icon} />
                 </a>
@@ -141,28 +128,29 @@ export default function Hero() {
           </div>
 
           {/* CODE WINDOW */}
-          <div className="flex justify-center lg:justify-end w-full">
-            <div className="bg-[#1a1a1a] border border-[#333] rounded-xl overflow-hidden shadow-lg w-full max-w-full sm:max-w-[420px] lg:max-w-[500px]">
-
-              <div className="bg-[#2a2a2a] px-4 py-3 flex items-center gap-2 border-b border-[#333]">
-                <span className="w-3 h-3 bg-red-500 rounded-full" />
-                <span className="w-3 h-3 bg-yellow-400 rounded-full" />
-                <span className="w-3 h-3 bg-green-500 rounded-full" />
-                <span className="ml-auto text-xs text-gray-400 font-mono">
-                  app.js — Full Stack API
-                </span>
+          <div className="relative group perspective-[1000px] hidden sm:block">
+            <div className="glass-card rounded-2xl overflow-hidden shadow-2xl border-white/10 group-hover:border-[#00ff88]/30 transition-all duration-500 transform hover:rotate-y-12">
+              <div className="bg-white/5 px-4 py-3 flex items-center gap-2 border-b border-white/5">
+                <div className="flex gap-1.5">
+                  <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
+                  <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
+                  <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
+                </div>
+                <span className="ml-auto font-mono text-[10px] text-gray-500">DeveloperInfo.tsx</span>
               </div>
-
-              <div className="p-5 font-mono text-xs sm:text-sm leading-6">
-                <CodeLine n="1">import Express from 'express'</CodeLine>
-                <CodeLine n="2">import MongoDB from 'mongodb'</CodeLine>
-                <CodeLine n="3" muted>// Scalable API architecture</CodeLine>
-                <CodeLine n="4">const server = Express()</CodeLine>
-                <CodeLine n="5">server.use(cors())</CodeLine>
-                <CodeLine n="6">server.listen(3000, "API Ready")</CodeLine>
-                <div className="h-5 w-0.5 bg-[#00ff88] animate-blink ml-8 mt-1" />
+              <div className="p-6 font-mono text-xs sm:text-sm leading-7">
+                <CodeLine n="01"><span className="text-[#ff79c6]">const</span> <span className="text-[#50fa7b]">developer</span> = &#123;</CodeLine>
+                <CodeLine n="02">&nbsp;&nbsp;name: <span className="text-[#f1fa8c]">&apos;Rizwan Ullah&apos;</span>,</CodeLine>
+                <CodeLine n="03">&nbsp;&nbsp;role: <span className="text-[#f1fa8c]">&apos;Full Stack Engineer&apos;</span>,</CodeLine>
+                <CodeLine n="04">&nbsp;&nbsp;skills: [<span className="text-[#f1fa8c]">&apos;MERN Stack&apos;</span>, <span className="text-[#f1fa8c]">&apos;Next.js&apos;</span>],</CodeLine>
+                <CodeLine n="05">&nbsp;&nbsp;passion: <span className="text-[#f1fa8c]">&apos;Clean Code&apos;</span>,</CodeLine>
+                <CodeLine n="06">&nbsp;&nbsp;location: <span className="text-[#f1fa8c]">&apos;Pakistan&apos;</span></CodeLine>
+                <CodeLine n="07">&#125;;</CodeLine>
+                <div className="h-4 w-4 bg-[#00ff88]/50 animate-pulse ml-4 mt-2 rounded-sm" />
               </div>
             </div>
+            {/* Background Glow for Card */}
+            <div className="absolute -inset-2 bg-gradient-to-r from-[#00ff88]/20 to-[#00ccff]/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
           </div>
 
         </div>
@@ -171,21 +159,12 @@ export default function Hero() {
   );
 }
 
-function CodeLine({
-  n,
-  children,
-  muted,
-}: {
-  n: string;
-  children: React.ReactNode;
-  muted?: boolean;
-}) {
+function CodeLine({ n, children }: { n: string; children: React.ReactNode }) {
   return (
-    <div className="flex gap-4 mb-2">
-      <span className="text-gray-500">{n}</span>
-      <span className={muted ? "text-[#6272a4]" : "text-gray-200"}>
-        {children}
-      </span>
+    <div className="flex gap-4 group/line">
+      <span className="w-6 text-[#6272a4] text-right select-none">{n}</span>
+      <span className="text-gray-300 group-hover/line:text-white transition-colors">{children}</span>
     </div>
   );
 }
+

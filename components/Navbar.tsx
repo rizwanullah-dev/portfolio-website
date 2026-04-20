@@ -5,22 +5,7 @@ import { useState, useEffect } from "react";
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    let ticking = false;
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          setIsScrolled(window.scrollY > 80);
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const [activeSection, setActiveSection] = useState("home");
 
   const navItems = [
     { href: "#home", label: "Home" },
@@ -30,19 +15,41 @@ export default function Navbar() {
     { href: "#contact", label: "Contact" },
   ];
 
-  const handleNavClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    href: string
-  ) => {
-    e.preventDefault();
-    if (href.startsWith('#')) {
-      document.querySelector(href)?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+      
+      // Active section detection
+      const sections = navItems.map(item => item.href.substring(1));
+      const current = sections.find(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
       });
-    } else {
-      // For external links like /blog
-      window.location.href = href;
+      if (current) setActiveSection(current);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const element = document.querySelector(href);
+    if (element) {
+      const offset = 80;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
     }
     setIsMenuOpen(false);
   };
@@ -52,120 +59,102 @@ export default function Navbar() {
       role="navigation"
       aria-label="Main Navigation"
       className={`
-        fixed top-0 inset-x-0 z-50
-        transition-all duration-300
-        backdrop-blur-md
-        border-b border-[#333]
-        ${isScrolled
-          ? "bg-[rgba(10,10,10,0.95)] shadow-[0_2px_20px_rgba(0,255,136,0.12)]"
-          : "bg-[rgba(10,10,10,0.85)]"
+        fixed top-0 inset-x-0 z-[100]
+        transition-all duration-500
+        ${isScrolled 
+          ? "bg-[#0a0a0a]/80 backdrop-blur-xl border-b border-white/10 py-3 shadow-[0_4px_30px_rgba(0,0,0,0.3)]" 
+          : "bg-transparent py-5"
         }
       `}
     >
-      <div className="w-full px-10 py-2">
-        <div className="flex items-center justify-between">
-          {/* Your original logo styling preserved */}
-          <div className="font-mono py-3 px-20 text-xl sm:text-2xl font-bold">
-            <span className="text-xl sm:text-3xl md:text-5xl lg:text-2xl text-[#00ff88]">
-              Rizwan
-            </span>{" "}
-            <span className="text-2xl sm:text-3xl md:text-5xl lg:text-2xl text-white">
-              Ullah
-            </span>
-            <span className="animate-blink ml-1 text-[#00ff88] md:text-3xl lg:text-2xl">
-              |
-            </span>
-          </div>
+      <div className="container flex items-center justify-between">
+        {/* LOGO */}
+        <a 
+          href="#home"
+          onClick={(e) => handleNavClick(e, "#home")}
+          className="group flex items-center gap-1 font-mono text-xl sm:text-2xl font-bold"
+        >
+          <span className="text-[#00ff88] group-hover:drop-shadow-[0_0_8px_rgba(0,255,136,0.5)] transition-all">Rizwan</span>
+          <span className="text-white">Ullah</span>
+          <span className="animate-blink text-[#00ff88]">|</span>
+        </a>
 
-          {/* Desktop Menu  */}
-          <ul className="hidden px-20 md:flex items-center gap-8 lg:gap-10 ml-auto">
-            {navItems.map((item) => (
+        {/* DESKTOP NAV */}
+        <ul className="hidden md:flex items-center gap-1">
+          {navItems.map((item) => {
+            const isActive = activeSection === item.href.substring(1);
+            return (
               <li key={item.href}>
                 <a
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item.href)}
-                  className="
-                    relative
-                    text-sm md:text-base lg:text-lg
-                    font-lg
-                    text-[#b0b0b0]
-                    transition-all duration-300
-                    hover:text-[#00ff88]
-                    group
-                  "
+                  className={`
+                    relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-full
+                    ${isActive 
+                      ? "text-[#00ff88] bg-[#00ff88]/10" 
+                      : "text-gray-400 hover:text-white"
+                    }
+                  `}
                 >
                   {item.label}
-                  <span
-                    className="
-                      absolute -bottom-2 left-0
-                      h-[2px] w-0
-                      bg-[#00ff88]
-                      transition-all duration-300
-                      group-hover:w-full
-                      group-hover:shadow-[0_0_10px_rgba(0,255,136,0.35)]
-                    "
-                  />
+                  {isActive && (
+                    <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-[#00ff88] rounded-full blur-[1px]" />
+                  )}
                 </a>
               </li>
-            ))}
-          </ul>
+            );
+          })}
+        </ul>
 
-          {/* Mobile Menu Button  */}
-          <button
-            aria-label="Toggle menu"
-            aria-expanded={isMenuOpen}
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden flex flex-col gap-[5px]"
-          >
-            <span
-              className={`h-[3px] w-6 bg-white transition-all ${
-                isMenuOpen ? "rotate-45 translate-y-[6px]" : ""
-              }`}
-            />
-            <span
-              className={`h-[3px] w-6 bg-white transition-all ${
-                isMenuOpen ? "opacity-0" : ""
-              }`}
-            />
-            <span
-              className={`h-[3px] w-6 bg-white transition-all ${
-                isMenuOpen ? "-rotate-45 -translate-y-[6px]" : ""
-              }`}
-            />
-          </button>
-        </div>
+        {/* MOBILE MENU BUTTON */}
+        <button
+          aria-label="Toggle menu"
+          aria-expanded={isMenuOpen}
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="md:hidden relative z-[110] w-10 h-10 flex flex-col items-center justify-center gap-1.5 focus:outline-none group"
+        >
+          <span className={`h-0.5 w-6 bg-white transition-all duration-300 ${isMenuOpen ? "rotate-45 translate-y-2 bg-[#00ff88]" : ""}`} />
+          <span className={`h-0.5 w-6 bg-white transition-all duration-300 ${isMenuOpen ? "opacity-0" : ""}`} />
+          <span className={`h-0.5 w-6 bg-white transition-all duration-300 ${isMenuOpen ? "-rotate-45 -translate-y-2 bg-[#00ff88]" : ""}`} />
+        </button>
 
-        {/* Mobile Menu  */}
-        <div
+        {/* MOBILE OVERLAY */}
+        <div 
           className={`
-            md:hidden overflow-hidden transition-all duration-300
-            ${isMenuOpen
-              ? "max-h-64 opacity-100 mt-4 translate-y-0"
-              : "max-h-0 opacity-0 -translate-y-2"
-            }
+            fixed inset-0 z-[105] md:hidden
+            bg-[#0a0a0a]/95 backdrop-blur-2xl
+            transition-all duration-500 ease-in-out
+            ${isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"}
           `}
         >
-          <ul className="flex flex-col gap-3 rounded-xl bg-[#1a1a1a] p-4">
-            {navItems.map((item) => (
-              <li key={item.href}>
-                <a
-                  href={item.href}
-                  onClick={(e) => handleNavClick(e, item.href)}
-                  className="
-                    block py-1 px-2 rounded-md
-                    text-[#b0b0b0] font-medium
-                    transition-all duration-300
-                    hover:text-[#00ff88]
-                    hover:bg-[rgba(0,255,136,0.05)]
-                  "
+          <ul className="flex flex-col items-center justify-center h-full gap-8">
+            {navItems.map((item, idx) => {
+              const isActive = activeSection === item.href.substring(1);
+              return (
+                <li 
+                  key={item.href}
+                  className={`transition-all duration-500 delay-[${idx * 100}ms] ${isMenuOpen ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
                 >
-                  {item.label}
-                </a>
-              </li>
-            ))}
+                  <a
+                    href={item.href}
+                    onClick={(e) => handleNavClick(e, item.href)}
+                    className={`
+                      text-3xl font-bold tracking-tighter transition-all
+                      ${isActive ? "text-[#00ff88] scale-110" : "text-gray-500 hover:text-white"}
+                    `}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
+          
+          {/* Decorative Background for Mobile Menu */}
+          <div className="absolute top-1/4 -left-20 w-64 h-64 bg-[#00ff88]/10 rounded-full blur-[100px] animate-pulse" />
+          <div className="absolute bottom-1/4 -right-20 w-64 h-64 bg-[#00ccff]/10 rounded-full blur-[100px] animate-pulse delay-700" />
         </div>
       </div>
     </nav>
   );
-}
+}

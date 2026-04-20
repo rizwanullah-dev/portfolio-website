@@ -6,7 +6,7 @@ export default function Footer() {
       icon: 'fab fa-github',
       url: 'https://github.com/Rizwan2005khan',
       label: 'GitHub',
-      color: 'hover:text-gray-300'
+      color: 'hover:text-white'
     },
     {
       icon: 'fab fa-linkedin',
@@ -16,43 +16,44 @@ export default function Footer() {
     },
     {
       icon: 'fab fa-facebook',
-      label: 'facebook',
+      label: 'Facebook',
       url: 'https://www.facebook.com/share/17rXqVgXcE/',
-      color: 'hover:text-blue-500'
+      color: 'hover:text-blue-600'
     },
     {
       icon: 'fas fa-envelope',
       label: 'Email',
-      url: 'mailto:your.email@example.com',
-      color: 'hover:text-red-500'
+      url: 'mailto:rizwanullah@example.com',
+      color: 'hover:text-[#00ff88]'
     }
   ];
 
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gradient-to-t from-[#0a0a0a] to-[#1a1a1a] border-t border-[#333] py-12 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/2 left-1/4 w-32 h-32 bg-emerald-500/5 rounded-full blur-2xl"></div>
-        <div className="absolute bottom-1/2 right-1/4 w-32 h-32 bg-purple-500/5 rounded-full blur-2xl"></div>
-      </div>
+    <footer className="relative bg-[#0a0a0a] pt-20 pb-10 border-t border-white/5 overflow-hidden">
+      {/* Background Decor */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-[#00ff88]/50 to-transparent" />
+      <div className="absolute top-0 left-1/4 w-64 h-64 bg-[#00ff88]/5 rounded-full blur-[100px] -z-10" />
+      <div className="absolute top-0 right-1/4 w-64 h-64 bg-[#00ccff]/5 rounded-full blur-[100px] -z-10" />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="flex flex-col lg:flex-row justify-between items-center gap-8">
-          {/* Left Section */}
-          <div className="text-center lg:text-left">
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-xl text-[#00ff88] font-mono">Rizwan</span>
-              <span className="text-xl text-white">Ullah</span>
+      <div className="container">
+        <div className="flex flex-col lg:flex-row justify-between items-center gap-12 mb-16">
+          {/* Brand Section */}
+          <div className="text-center lg:text-left space-y-4">
+            <div className="flex items-center justify-center lg:justify-start gap-2 font-mono text-2xl font-bold">
+              <span className="text-[#00ff88]">Rizwan</span>
+              <span className="text-white">Ullah</span>
+              <span className="text-[#00ff88]">|</span>
             </div>
-            <p className="text-[#b0b0b0] text-sm max-w-md">
-              Building innovative solutions and crafting exceptional digital experiences through clean code and modern technologies.
+            <p className="text-gray-500 text-sm max-w-sm leading-relaxed">
+              Crafting exceptional digital experiences through clean code and modern technologies. 
+              Dedicated to building scalable solutions that matter.
             </p>
           </div>
           
           {/* Social Links */}
-          <div className="flex gap-6">
+          <div className="flex gap-4">
             {footerLinks.map((link) => (
               <a
                 key={link.label}
@@ -60,7 +61,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={link.label}
-                className={`text-[#b0b0b0] text-2xl hover:text-[#00ff88] transition-all duration-300 hover:drop-shadow-[0_0_15px_rgba(0,255,136,0.3)] hover:scale-110 ${link.color}`}
+                className={`w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-xl text-gray-500 transition-all duration-300 hover:bg-white/10 hover:-translate-y-1 ${link.color} hover:shadow-[0_0_20px_rgba(0,255,136,0.2)]`}
               >
                 <i className={link.icon}></i>
               </a>
@@ -68,21 +69,24 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-[#333] mt-8 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-[#b0b0b0] text-sm text-center md:text-left">
-            &copy; {currentYear} Rizwan Ullah. All rights reserved.
+        {/* Divider */}
+        <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-white/5 to-transparent mb-10" />
+
+        {/* Bottom Section */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-xs font-mono text-gray-600">
+          <p>
+            &copy; {currentYear} Rizwan Ullah. Made with <span className="text-[#00ff88] animate-pulse">❤</span> in Pakistan
           </p>
-          <div className="flex items-center gap-4 text-[#666] text-sm">
-            <span>Built with</span>
-            <div className="flex gap-1">
-              <span className="text-[#00ff88]">Next.js</span>
-              <span>&</span>
-              <span className="text-[#00ff88]">TypeScript</span>
-            </div>
+          <div className="flex items-center gap-6">
+            <span className="flex items-center gap-2">
+              Built with <span className="text-white">Next.js 16</span>
+            </span>
+            <span className="flex items-center gap-2">
+              Styled with <span className="text-white">Tailwind</span>
+            </span>
           </div>
         </div>
       </div>
     </footer>
   );
-}
+}

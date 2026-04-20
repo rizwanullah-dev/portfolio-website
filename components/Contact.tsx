@@ -24,25 +24,25 @@ export default function Contact() {
       icon: 'fab fa-linkedin',
       label: 'LinkedIn',
       url: 'https://www.linkedin.com/in/rizwan-ullah-b74793290/',
-      color: 'hover:text-blue-500'
+      color: 'group-hover:text-blue-500'
     },
     {
       icon: 'fab fa-github',
       label: 'GitHub',
       url: 'https://github.com/Rizwan2005khan',
-      color: 'hover:text-gray-300'
+      color: 'group-hover:text-white'
     },
     {
       icon: 'fab fa-facebook',
-      label: 'facebook',
+      label: 'Facebook',
       url: 'https://www.facebook.com/share/17rXqVgXcE/',
-      color: 'hover:text-blue-500'
+      color: 'group-hover:text-blue-600'
     },
     {
       icon: 'fas fa-envelope',
       label: 'Email',
-      url: 'mailto:your.email@example.com',
-      color: 'hover:text-red-500'
+      url: 'mailto:rizwanullah@example.com',
+      color: 'group-hover:text-[#00ff88]'
     }
   ];
 
@@ -57,7 +57,6 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validation
     if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
       setSubmitError('Please fill in all fields');
       return;
@@ -72,123 +71,138 @@ export default function Contact() {
     setSubmitError('');
 
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1500));
       setSubmitSuccess(true);
       setFormData({ name: '', email: '', message: '' });
-      
-      setTimeout(() => {
-        setSubmitSuccess(false);
-      }, 5000);
+      setTimeout(() => setSubmitSuccess(false), 5000);
     } catch (error) {
-      setSubmitError('Failed to send message. Please try again.');
+      setSubmitError('Something went wrong. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <section id="contact" className="py-24">
-      <div className="max-w-[1200px] mx-auto px-8">
-        <h2 className="text-4xl md:text-5xl lg:text-3xl font-bold mb-12 text-center">
-          <span className="text-[#00ff88] font-mono"></span> Get In Touch
-        </h2>
+    <section id="contact" className="py-24 relative overflow-hidden">
+       {/* Background Decor */}
+       <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#00ff88]/5 rounded-full blur-[120px] -z-10" />
+       <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#00ccff]/5 rounded-full blur-[120px] -z-10" />
+
+      <div className="container">
+        <div className="text-center space-y-4 mb-20">
+          <h2 className="text-gradient-primary">Get In Touch</h2>
+          <p className="text-gray-500 max-w-2xl mx-auto">
+            Have a project in mind or just want to say hi? My inbox is always open.
+          </p>
+        </div>
         
-        <div ref={ref} className={`grid md:grid-cols-2 gap-16 transition-all duration-1000 ${
-          inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-        }`}>
+        <div 
+          ref={ref} 
+          className={`grid lg:grid-cols-[0.8fr,1.2fr] gap-12 lg:gap-20 transition-all duration-1000 ${
+            inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
           {/* Contact Info */}
-          <div>
-            <h3 className="text-2xl font-bold mb-3 text-[#00ff88]">Let's Connect</h3>
-            <p className="text-lg text-[#b0b0b0] mb-4 leading-relaxed">
-              I'm always interested in collaborating on interesting projects, 
-              speaking at events, or helping developers level up their skills.
-            </p>
+          <div className="space-y-8">
+            <div className="space-y-4">
+              <h3 className="text-white">Let&apos;s talk about everything!</h3>
+              <p className="text-gray-400 leading-relaxed">
+                I&apos;m currently available for freelance work and full-time positions. 
+                If you have an idea that needs to be brought to life, feel free to reach out.
+              </p>
+            </div>
             
-            <div className="flex flex-col gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
               {contactLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`flex items-center gap-4 text-[#b0b0b0] p-4 bg-[#1a1a1a] border border-[#333] rounded-lg hover:text-[#00ff88] hover:border-[#00ff88] hover:translate-x-2 transition-all duration-300 group ${link.color}`}
+                  className="glass-card p-4 rounded-xl flex items-center gap-4 group transition-all"
                 >
-                  <i className={`${link.icon} text-2xl w-8 text-center`}></i>
-                  <span className="font-medium">{link.label}</span>
+                  <div className={`w-12 h-12 rounded-lg bg-white/5 flex items-center justify-center text-xl text-gray-500 transition-colors ${link.color}`}>
+                    <i className={link.icon}></i>
+                  </div>
+                  <div>
+                    <p className="text-[10px] uppercase tracking-widest text-gray-500">{link.label}</p>
+                    <p className="text-sm font-bold text-white group-hover:text-[#00ff88] transition-colors">Connect</p>
+                  </div>
                 </a>
               ))}
             </div>
           </div>
           
           {/* Contact Form */}
-          <div className="bg-[#1a1a1a] border border-[#333] rounded-xl p-4">
-            <form onSubmit={handleSubmit} className="space-y-3">
-              <div>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  placeholder="Your Name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full p-4 bg-[#0a0a0a] border border-[#333] rounded-lg text-white placeholder-[#666] focus:outline-none focus:border-[#00ff88] focus:shadow-[0_0_10px_rgba(0,255,136,0.3)] transition-all duration-300"
-                />
+          <div className="glass-card p-8 sm:p-10 rounded-2xl relative">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid sm:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label htmlFor="name" className="text-xs font-mono text-gray-500 uppercase tracking-wider">Your Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    placeholder="John Doe"
+                    className="w-full p-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-600 focus:outline-none focus:border-[#00ff88]/50 focus:bg-white/10 transition-all"
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label htmlFor="email" className="text-xs font-mono text-gray-500 uppercase tracking-wider">Your Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder="john@example.com"
+                    className="w-full p-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-600 focus:outline-none focus:border-[#00ff88]/50 focus:bg-white/10 transition-all"
+                    required
+                  />
+                </div>
               </div>
               
-              <div>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="Your Email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full p-4 bg-[#0a0a0a] border border-[#333] rounded-lg text-white placeholder-[#666] focus:outline-none focus:border-[#00ff88] focus:shadow-[0_0_10px_rgba(0,255,136,0.3)] transition-all duration-300"
-                />
-              </div>
-              
-              <div>
+              <div className="space-y-2">
+                <label htmlFor="message" className="text-xs font-mono text-gray-500 uppercase tracking-wider">Your Message</label>
                 <textarea
                   id="message"
                   name="message"
-                  placeholder="Your Message"
                   rows={5}
                   value={formData.message}
                   onChange={handleInputChange}
+                  placeholder="Tell me about your project..."
+                  className="w-full p-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-600 focus:outline-none focus:border-[#00ff88]/50 focus:bg-white/10 transition-all resize-none"
                   required
-                  className="w-full p-4 bg-[#0a0a0a] border border-[#333] rounded-lg text-white placeholder-[#666] focus:outline-none focus:border-[#00ff88] focus:shadow-[0_0_10px_rgba(0,255,136,0.3)] transition-all duration-300 resize-none"
                 ></textarea>
               </div>
               
               {submitError && (
-                <div className="p-3 bg-red-500/20 border border-red-500 rounded-lg text-red-300 text-sm">
-                  {submitError}
+                <div className="p-4 bg-red-500/10 border border-red-500/50 rounded-xl text-red-400 text-sm flex items-center gap-3">
+                  <i className="fas fa-exclamation-circle" /> {submitError}
                 </div>
               )}
               
               {submitSuccess && (
-                <div className="p-3 bg-green-500/20 border border-green-500 rounded-lg text-green-300 text-sm">
-                  Message sent successfully! I'll get back to you soon.
+                <div className="p-4 bg-[#00ff88]/10 border border-[#00ff88]/50 rounded-xl text-[#00ff88] text-sm flex items-center gap-3">
+                  <i className="fas fa-check-circle" /> Message sent successfully! I&apos;ll get back to you soon.
                 </div>
               )}
               
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-[#00ff88] to-[#0088ff] text-[#0a0a0a] font-semibold rounded-lg shadow-[0_4px_15px_rgba(0,255,136,0.3)] hover:shadow-[0_8px_25px_rgba(0,255,136,0.5)] hover:-translate-y-1 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full group py-4 bg-[#00ff88] text-[#0a0a0a] font-bold rounded-xl hover:shadow-[0_0_30px_rgba(0,255,136,0.4)] disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-3"
               >
                 {isSubmitting ? (
-                  <>
-                    <i className="fas fa-spinner fa-spin"></i>
-                    Sending...
-                  </>
+                  <i className="fas fa-spinner animate-spin" />
                 ) : (
                   <>
-                    <i className="fas fa-paper-plane"></i>
-                    Send Message
+                    <span>Send Message</span>
+                    <i className="fas fa-paper-plane group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </>
                 )}
               </button>
@@ -198,4 +212,4 @@ export default function Contact() {
       </div>
     </section>
   );
-}
+}

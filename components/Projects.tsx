@@ -49,19 +49,32 @@ export default function Projects() {
   ];
 
   return (
-    <section id="projects" className="py-24">
-      <div className="max-w-[1200px] mx-auto px-8">
-        <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center">
-          <span className="text-[#00ff88] font-mono"></span> Featured Projects
-        </h2>
+    <section id="projects" className="py-24 relative overflow-hidden">
+      {/* Background Decor */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full -z-10 opacity-20">
+        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#00ff88]/5 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#00ccff]/5 rounded-full blur-[120px]" />
+      </div>
+
+      <div className="container">
+        <div className="text-center space-y-4 mb-20">
+          <h2 className="text-gradient-primary">Featured Projects</h2>
+          <p className="text-gray-500 max-w-2xl mx-auto">
+            A showcase of my recent work, blending technical complexity with intuitive design.
+          </p>
+        </div>
         
-        {/* Removed decorative header and background elements to match original style */}
-        
-        <div ref={ref} className={`grid md:grid-cols-2 gap-8 transition-all duration-1000 ${
-          inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-        }`}>
+        <div 
+          ref={ref} 
+          className="grid md:grid-cols-2 gap-8 lg:gap-12"
+        >
           {projects.map((project, index) => (
-            <ProjectCard key={project.title} project={project} index={index} inView={inView} />
+            <ProjectCard 
+              key={project.title} 
+              project={project} 
+              index={index} 
+              inView={inView} 
+            />
           ))}
         </div>
       </div>
@@ -75,7 +88,7 @@ function ProjectCard({ project, index, inView }: {
   inView: boolean;
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
-  const [transform, setTransform] = useState('');
+  const [rotation, setRotation] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
@@ -87,75 +100,91 @@ function ProjectCard({ project, index, inView }: {
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
     
-    const rotateX = (y - centerY) / 10;
-    const rotateY = (centerX - x) / 10;
+    const rotateX = (centerY - y) / 20;
+    const rotateY = (x - centerX) / 20;
     
-    setTransform(`perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`);
+    setRotation({ x: rotateX, y: rotateY });
   };
 
   const handleMouseLeave = () => {
-    setTransform('perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)');
+    setRotation({ x: 0, y: 0 });
   };
 
   return (
     <div 
       ref={cardRef}
-      className={`bg-[#0a0a0a] border border-[#333] rounded-xl p-8 transition-all duration-300 relative overflow-hidden group hover:border-[#00ff88] ${
-        inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-      }`}
-      style={{ 
-        transitionDelay: `${index * 150}ms`,
-        transform: transform
-      }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      className={`
+        glass-card p-8 rounded-2xl relative overflow-hidden group
+        transition-all duration-700 ease-out
+        ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}
+      `}
+      style={{ 
+        transitionDelay: `${index * 150}ms`,
+        transform: `perspective(1000px) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg) translateY(${rotation.x !== 0 ? '-5px' : '0'})`,
+        boxShadow: rotation.x !== 0 ? '0 20px 40px rgba(0,0,0,0.4)' : 'none'
+      }}
     >
+      {/* Decorative localized glow */}
+      <div 
+        className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none"
+        style={{
+          background: `radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), #00ff88, transparent 60%)`
+        }}
+      />
       
-      
-      {/* Project Header */}
-      <div className="flex justify-between items-center mb-6"> {/* Changed items-start to items-center */}
-        <div className="text-3xl text-[#00ff88]">
-          <i className="fas fa-folder"></i> {/* Original icon */}
+      {/* Top Header */}
+      <div className="flex justify-between items-start mb-8 text-sm">
+        <div className="flex gap-2">
+           <span className="px-3 py-1 bg-[#00ff88]/10 text-[#00ff88] rounded-full border border-[#00ff88]/20 font-mono text-[10px]">
+            {project.category}
+          </span>
+          <span className="px-3 py-1 bg-white/5 text-gray-500 rounded-full border border-white/5 font-mono text-[10px]">
+            {project.year}
+          </span>
         </div>
         <div className="flex gap-4">
           <a 
             href={project.github} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="text-[#b0b0b0] text-xl hover:text-[#00ff88] transition-colors duration-300" // Removed hover:scale
+            className="text-gray-500 hover:text-[#00ff88] text-xl transition-colors"
+            title="View Code"
           >
-            <i className="fab fa-github"></i> {/* Original icon */}
+            <i className="fab fa-github" />
           </a>
-          {/* Only show external link if there's a valid URL */}
           {project.external !== '#' && (
             <a 
               href={project.external} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-[#b0b0b0] text-xl hover:text-[#00ff88] transition-colors duration-300" // Removed hover:scale
+              className="text-gray-500 hover:text-[#00ff88] text-xl transition-colors"
+              title="Live Demo"
             >
-              <i className="fas fa-external-link-alt"></i> {/* Original icon */}
+              <i className="fas fa-external-link-alt" />
             </a>
           )}
         </div>
       </div>
       
-      {/* Project Title */}
-      <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-[#00ff88] transition-colors duration-300">
-        {project.title}
-      </h3>
+      {/* Body */}
+      <div className="space-y-4">
+        <h3 className="text-white group-hover:text-[#00ff88] transition-colors tracking-tight">
+          {project.title}
+        </h3>
+        
+        <p className="text-gray-400 text-sm leading-relaxed line-clamp-3 group-hover:line-clamp-none transition-all duration-500">
+          {project.description}
+        </p>
+      </div>
       
-      {/* Project Description */}
-      <p className="text-[#b0b0b0] mb-6 leading-relaxed">
-        {project.description}
-      </p>
-      
-      {/* Tech Stack */}
-      <div className="flex flex-wrap gap-2">
+      {/* Footer Tags */}
+      <div className="mt-8 pt-6 border-t border-white/5 flex flex-wrap gap-2">
         {project.tech.map((tech: string) => (
           <span 
             key={tech}
-            className="bg-[#2a2a2a] text-[#b0b0b0] px-3 py-1 rounded-md text-sm font-mono" // Original styling
+            className="text-[10px] font-mono text-gray-500 px-2 py-1 bg-white/5 rounded-md"
           >
             {tech}
           </span>
@@ -163,4 +192,4 @@ function ProjectCard({ project, index, inView }: {
       </div>
     </div>
   );
-}
+}

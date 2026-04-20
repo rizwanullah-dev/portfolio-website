@@ -9,10 +9,10 @@ const aboutData = {
   description1: "Hello! I'm Rizwan Ullah, a passionate Full Stack Developer specializing in MERN and PERN stacks, based in Peshawar, Pakistan.",
   description2: "As a Software Engineering graduate from Islamia College Peshawar, I combine academic excellence with hands-on experience. My expertise spans building scalable web applications, RESTful APIs, and implementing modern development practices. I thrive on transforming complex problems into elegant, efficient solutions using cutting-edge technologies.",
   achievements: [
-    "BS Software Engineering Graduate",
-    "50+ Hours of Coding Weekly",
-    "10+ Real-world Projects Delivered",
-    "Open Source Contributor"
+    { label: "Graduated", value: "BS Software Eng.", icon: "fas fa-graduation-cap" },
+    { label: "Experience", value: "2+ Years", icon: "fas fa-briefcase" },
+    { label: "Projects", value: "20+ Delivered", icon: "fas fa-rocket" },
+    { label: "Code", value: "Weekly 50h+", icon: "fas fa-code" }
   ]
 };
 
@@ -21,12 +21,6 @@ export default function About() {
     threshold: 0.1,
     triggerOnce: true,
   });
-
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   const handleDownloadCV = () => {
     const link = document.createElement('a');
@@ -38,104 +32,105 @@ export default function About() {
   };
 
   return (
-    <section id="about" className="min-h-[80vh] relative py-20 px-4 bg-gradient-to-b from-transparent to-[#0a0a0a]/50">
-      
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-purple-500/5 rounded-full blur-3xl"></div>
+    <section id="about" className="relative py-24 overflow-hidden">
+      {/* Background elements */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full -z-10 opacity-30">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#00ff88]/5 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#00ccff]/5 rounded-full blur-[120px]" />
       </div>
 
       <div 
         ref={ref}
-        className={`max-w-[1200px] mx-auto transition-all duration-1000 ${
-          inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-        } relative z-10`}
+        className={`container transition-all duration-1000 ${
+          inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
+        }`}
       >
-        
-
-        {/* Main Content Grid */}
-        <div className="grid lg:grid-cols-[55%_45%] gap-16 items-center">
+        <div className="grid lg:grid-cols-[1fr,0.8fr] gap-16 lg:gap-24 items-center">
           
-          {/* Left Side - Text Content */}
-          <div className="space-y-8">
-            <h2 className="text-2xl sm:text-5xl lg:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00ff88] to-[#0088ff] font-mono">
-              {aboutData.title}
-            </h2>
+          {/* TEXT CONTENT */}
+          <div className="space-y-10">
+            <div className="space-y-4">
+              <h2 className="text-gradient-primary inline-block">
+                {aboutData.title}
+              </h2>
+              <div className="h-1.5 w-20 bg-gradient-to-r from-[#00ff88] to-[#00ccff] rounded-full" />
+            </div>
             
-            <div className="space-y-6">
-              <p className="text-lg sm:text-xl lg:text-sm text-[#b0b0b0] leading-relaxed font-sans">
+            <div className="space-y-6 text-gray-300">
+              <p className="leading-relaxed">
                 {aboutData.description1}
               </p>
-              
-              <p className="text-lg sm:text-xl lg:text-sm text-[#b0b0b0] leading-relaxed font-sans">
+              <p className="leading-relaxed">
                 {aboutData.description2}
               </p>
             </div>
 
             {/* Achievements Grid */}
-            <div className="grid grid-cols-2 gap-4 mt-8">
+            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4 gap-4">
               {aboutData.achievements.map((achievement, index) => (
                 <div 
                   key={index} 
-                  className="flex items-center gap-3 p-3 bg-[#1a1a1a]/50 border border-[#333] rounded-lg hover:border-[#00ff88] transition-colors duration-300"
+                  className="glass-card p-4 rounded-xl flex flex-col items-center text-center gap-2 group"
                 >
-                  <div className="w-2 h-2 bg-[#00ff88] rounded-full animate-pulse"></div>
-                  <span className="text-[#b0b0b0] text-sm">{achievement}</span>
+                  <i className={`${achievement.icon} text-[#00ff88] text-xl group-hover:scale-110 transition-transform`} />
+                  <div className="flex flex-col">
+                    <span className="text-[10px] uppercase tracking-widest text-gray-500">{achievement.label}</span>
+                    <span className="text-xs font-bold text-white">{achievement.value}</span>
+                  </div>
                 </div>
               ))}
             </div>
 
-            {/* CTA Button */}
             <button 
               onClick={handleDownloadCV}
-              className="mt-8 px-8 py-4 bg-gradient-to-r from-[#00ff88] to-[#0088ff] text-[#0a0a0a] font-semibold rounded-lg shadow-[0_4px_20px_rgba(0,255,136,0.4)] hover:shadow-[0_8px_30px_rgba(0,255,136,0.6)] hover:-translate-y-1 transition-all duration-300 flex items-center gap-2"
+              className="group relative px-8 py-4 bg-white/5 border border-white/10 hover:border-[#00ff88]/50 rounded-xl transition-all duration-300 overflow-hidden"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
-              Download Resume
+              <span className="relative z-10 flex items-center gap-3 font-bold text-white group-hover:text-[#00ff88] transition-colors">
+                <i className="fas fa-file-download" /> Download Resume
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#00ff88]/10 to-[#00ccff]/10 opacity-0 group-hover:opacity-100 transition-opacity" />
             </button>
           </div>
 
-          {/* Right Side - Image with Professional Elements */}
-          <div className="flex justify-center lg:justify-center ">
+          {/* IMAGE SECTION */}
+          <div className="flex justify-center">
             <div className="relative">
-              {/* Main Image Container */}
-              <div className="relative w-[320px] h-[320px] sm:w-[350px] sm:h-[350px] lg:w-[380px] lg:h-[380px]">
-                <Image
-                  src="/image.png" 
-                  alt="Rizwan Ullah - Professional Portrait"
-                  fill
-                  className="object-cover rounded-2xl border-4 border-[#00ff88] shadow-2xl hover:shadow-[0_0_40px_rgba(0,255,136,0.3)] transition-shadow duration-500"
-                  priority
-                />
+              {/* Main Image Decoration */}
+              <div className="absolute -inset-4 bg-gradient-to-tr from-[#00ff88]/20 to-[#00ccff]/20 rounded-3xl blur-2xl animate-pulse-subtle" />
+              
+              <div className="relative w-[280px] h-[340px] sm:w-[320px] sm:h-[400px] lg:w-[350px] lg:h-[450px]">
+                <div className="absolute inset-0 border-2 border-white/10 rounded-3xl -rotate-6 group-hover:rotate-0 transition-transform duration-500" />
+                <div className="absolute inset-0 border-2 border-[#00ff88]/30 rounded-3xl rotate-3 group-hover:rotate-0 transition-transform duration-500" />
                 
-                {/* Glow Effect */}
-                <div className="absolute -inset-4 bg-gradient-to-br from-[#00ff88] to-[#0088ff] rounded-2xl blur-xl opacity-30 animate-pulse -z-10"></div>
-                
-                {/* Corner Badge */}
-                <div className="absolute -top-4 -right-4 bg-gradient-to-r from-[#00ff88] to-[#0088ff] px-4 py-2 rounded-lg">
-                  <span className="text-[#0a0a0a] font-mono text-xs font-bold">SOFTWARE ENGINEER</span>
+                <div className="relative h-full w-full rounded-3xl overflow-hidden border-4 border-white/10 shadow-2xl">
+                  <Image
+                    src="/image.png" 
+                    alt="Rizwan Ullah"
+                    fill
+                    className="object-cover grayscale hover:grayscale-0 transition-all duration-700 hover:scale-105"
+                    priority
+                  />
+                  {/* Overlay Gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/60 to-transparent" />
+                  
+                  {/* Floating Tech Badges */}
+                  <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 px-4 py-2 bg-black/60 backdrop-blur-md rounded-full border border-white/10">
+                    <i className="fab fa-react text-[#00d8ff]" />
+                    <i className="fab fa-node-js text-[#68a063]" />
+                    <i className="fab fa-js text-[#f7df1e]" />
+                    <i className="fas fa-database text-[#47a248]" />
+                  </div>
                 </div>
               </div>
 
-              {/* Skill Icons Around Image */}
-              <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 flex gap-4 bg-[#1a1a1a] border border-[#333] px-6 py-3 rounded-full">
-                {['React', 'Node', 'MongoDB', 'TypeScript'].map((tech, index) => (
-                  <span 
-                    key={tech} 
-                    className="text-[#00ff88] font-mono text-sm hover:text-white transition-colors duration-300"
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
+              {/* Corner Accents */}
+              <div className="absolute -top-6 -right-6 w-12 h-12 border-t-2 border-r-2 border-[#00ff88]/50 rounded-tr-xl" />
+              <div className="absolute -bottom-6 -left-6 w-12 h-12 border-b-2 border-l-2 border-[#00ccff]/50 rounded-bl-xl" />
             </div>
           </div>
+
         </div>
       </div>
     </section>
   );
-}
+}
