@@ -59,7 +59,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-[100svh] flex items-center pt-20 pb-16 overflow-hidden bg-gradient-to-b from-[#0a0a0a] to-[#0f0f0f]"
+      className="relative min-h-[100svh] flex items-center pt-20 pb-16 overflow-hidden"
     >
       {/* Background Glows */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
