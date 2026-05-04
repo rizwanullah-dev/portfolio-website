@@ -6,12 +6,12 @@ import Image from 'next/image';
 
 const aboutData = {
   title: "Who I Am ?",
-  description1: "Hello! I'm Rizwan Ullah, a passionate Full Stack Developer specializing in MERN and PERN stacks, based in Peshawar, Pakistan.",
-  description2: "As a Software Engineering graduate from Islamia College Peshawar, I combine academic excellence with hands-on experience. My expertise spans building scalable web applications, RESTful APIs, and implementing modern development practices. I thrive on transforming complex problems into elegant, efficient solutions using cutting-edge technologies.",
+  description1: "Hello! I'm Rizwan Ullah, a passionate Software Engineer and Full Stack Developer focused on MERN and PERN stacks, based in Peshawar, Pakistan.",
+  description2: "In my Software Engineering journey, I combine my academic excellence with hands-on experience. My expertise is building scalable web applications, RESTful APIs, and implementing modern development practices. I enjoy building things that actually work well and are easy to maintain.",
   achievements: [
     { label: "Graduated", value: "BS Software Eng.", icon: "fas fa-graduation-cap" },
     { label: "Experience", value: "2+ Years", icon: "fas fa-briefcase" },
-    { label: "Projects", value: "20+ Delivered", icon: "fas fa-rocket" },
+    { label: "Projects", value: "6+ self project", icon: "fas fa-rocket" },
     { label: "Code", value: "Weekly 50h+", icon: "fas fa-code" }
   ]
 };
@@ -45,7 +45,7 @@ export default function About() {
           inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
         }`}
       >
-        <div className="grid lg:grid-cols-[1fr,0.8fr] gap-16 lg:gap-24 items-center">
+        <div className="grid grid-cols-2 gap-16 lg:gap-24 items-center">
           
           {/* TEXT CONTENT */}
           <div className="space-y-10">
@@ -133,4 +133,4 @@ export default function About() {
       </div>
     </section>
   );
-}
+}
