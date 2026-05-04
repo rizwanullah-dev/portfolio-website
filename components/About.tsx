@@ -45,7 +45,7 @@ export default function About() {
           inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
         }`}
       >
-        <div className="grid grid-cols-2 gap-16 lg:gap-24 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           
           {/* TEXT CONTENT */}
           <div className="space-y-10">
@@ -93,7 +93,7 @@ export default function About() {
           </div>
 
           {/* IMAGE SECTION */}
-          <div className="flex justify-center">
+          <div className="hidden lg:flex justify-center">
             <div className="relative">
               {/* Main Image Decoration */}
               <div className="absolute -inset-4 bg-gradient-to-tr from-[#00ff88]/20 to-[#00ccff]/20 rounded-3xl blur-2xl animate-pulse-subtle" />
