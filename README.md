@@ -86,7 +86,7 @@ Follow these steps to run the project locally:
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/portfolio-nextjs.git
+git clone https://github.com/rizwanullah-dev/portfolio-website.git
 
 # Move into the project directory
 cd portfolio-nextjs

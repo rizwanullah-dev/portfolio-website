@@ -1,6 +1,5 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
 import { useInView } from 'react-intersection-observer';
 import {
   FaHtml5,
@@ -47,45 +46,6 @@ const skillsData = [
   { name: 'Postman', icon: SiPostman, color: '#FF6C37' },
 ];
 
-function AnimatedSkillsRow({
-  skills,
-  speed = 25,
-  direction = 'left',
-}: {
-  skills: typeof skillsData;
-  speed?: number;
-  direction?: 'left' | 'right';
-}) {
-  const rowRef = useRef<HTMLDivElement>(null);
-  const [paused, setPaused] = useState(false);
-
-  return (
-    <div
-      className="relative overflow-hidden h-24 select-none"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-    >
-      <div 
-        ref={rowRef} 
-        className={`flex gap-6 absolute whitespace-nowrap ${direction === 'left' ? 'animate-marquee-left' : 'animate-marquee-right'}`}
-        style={{ animationPlayState: paused ? 'paused' : 'running', animationDuration: `${60 - speed}s` }}
-      >
-        {[...skills, ...skills, ...skills].map((skill, index) => (
-          <div
-            key={`${skill.name}-${index}`}
-            className="inline-flex items-center gap-3 glass-card px-6 py-4 rounded-xl group cursor-pointer"
-          >
-            <skill.icon className="text-2xl transition-all duration-300 group-hover:scale-125" style={{ color: skill.color }} />
-            <span className="text-sm font-mono font-medium text-gray-300 group-hover:text-white transition-colors">
-              {skill.name}
-            </span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 export default function Skills() {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
 
@@ -103,31 +63,16 @@ export default function Skills() {
           </p>
         </div>
 
-        <div
+        {/* Static Grid for Details */}
+        <div 
           ref={ref}
-          className={`space-y-8 transition-all duration-1000 ${
-            inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6"
         >
-          <AnimatedSkillsRow
-            skills={skillsData.slice(0, 9)}
-            speed={30}
-            direction='left'
-          />
-          <AnimatedSkillsRow
-            skills={skillsData.slice(9)}
-            speed={25}
-            direction='right'
-          />
-        </div>
-
-        {/* Static Grid for Desktop Details */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 mt-24">
           {skillsData.map((skill, index) => (
             <div
               key={skill.name}
-              style={{ transitionDelay: `${index * 50}ms` }}
-              className={`flex flex-col items-center justify-center gap-4 glass-card p-8 rounded-2xl group transition-all duration-500 ${
+              style={{ transitionDelay: `${index * 40}ms` }}
+              className={`flex flex-col items-center justify-center gap-4 glass-card p-6 sm:p-8 rounded-2xl group transition-all duration-500 hover:border-[#00ff88]/30 hover:shadow-[0_0_25px_rgba(0,255,136,0.15)] ${
                 inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
             >
@@ -142,23 +87,6 @@ export default function Skills() {
           ))}
         </div>
       </div>
-
-      <style jsx global>{`
-        @keyframes marquee-left {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-33.33%); }
-        }
-        @keyframes marquee-right {
-          0% { transform: translateX(-33.33%); }
-          100% { transform: translateX(0); }
-        }
-        .animate-marquee-left {
-          animation: marquee-left linear infinite;
-        }
-        .animate-marquee-right {
-          animation: marquee-right linear infinite;
-        }
-      `}</style>
     </section>
   );
 }

@@ -15,6 +15,12 @@ export default function Contact() {
     message: ''
   });
 
+  const [errors, setErrors] = useState({
+    name: false,
+    email: false,
+    message: false
+  });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState('');
@@ -33,12 +39,6 @@ export default function Contact() {
       color: 'group-hover:text-white'
     },
     {
-      icon: 'fas fa-globe',
-      label: 'Portfolio',
-      url: 'https://portfolio-website-pi-five-73.vercel.app',
-      color: 'group-hover:text-[#00ccff]'
-    },
-    {
       icon: 'fas fa-envelope',
       label: 'Email',
       url: 'mailto:rizwanullahicp0306@gmail.com',
@@ -47,23 +47,35 @@ export default function Contact() {
   ];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+    setErrors(prev => ({
+      ...prev,
+      [name]: false
+    }));
     if (submitError) setSubmitError('');
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
-      setSubmitError('Please fill in all fields');
-      return;
-    }
+    const newErrors = {
+      name: !formData.name.trim(),
+      email: !formData.email.trim() || !/\S+@\S+\.\S+/.test(formData.email),
+      message: !formData.message.trim()
+    };
+    
+    setErrors(newErrors);
 
-    if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      setSubmitError('Please enter a valid email address');
+    if (newErrors.name || newErrors.email || newErrors.message) {
+      if (newErrors.email && formData.email.trim() !== '') {
+        setSubmitError('Please enter a valid email address');
+      } else {
+        setSubmitError('Please fill in all fields');
+      }
       return;
     }
 
@@ -93,7 +105,7 @@ export default function Contact() {
         <div className="text-center space-y-4 mb-20">
           <h2 className="text-gradient-primary">Get In Touch</h2>
           <p className="text-gray-500 max-w-2xl mx-auto">
-            Have a project in mind or just want to say hi? My inbox is always open.
+            Let&apos;s build something great together. I&apos;m currently open to full-stack engineering roles and freelance opportunities.
           </p>
         </div>
         
@@ -108,19 +120,18 @@ export default function Contact() {
             <div className="space-y-4">
               <h3 className="text-white">Let&apos;s talk about everything!</h3>
               <p className="text-gray-400 leading-relaxed">
-                I&apos;m currently available for freelance work and full-time positions. 
-                If you have an idea that needs to be brought to life, feel free to reach out.
+                Whether you have a full-time opportunity, a freelance project, or just want to discuss web engineering, feel free to connect.
               </p>
             </div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-4">
               {contactLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="glass-card p-4 rounded-xl flex items-center gap-4 group transition-all"
+                  className="glass-card p-4 rounded-xl flex items-center gap-4 group transition-all hover:border-[#00ff88]/30 hover:shadow-[0_0_20px_rgba(0,255,136,0.1)] hover:-translate-y-0.5"
                 >
                   <div className={`w-12 h-12 rounded-lg bg-white/5 flex items-center justify-center text-xl text-gray-500 transition-colors ${link.color}`}>
                     <i className={link.icon}></i>
@@ -147,7 +158,11 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleInputChange}
                     placeholder="John Doe"
-                    className="w-full p-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-600 focus:outline-none focus:border-[#00ff88]/50 focus:bg-white/10 transition-all"
+                    className={`w-full p-4 bg-white/5 border rounded-xl text-white placeholder-gray-600 focus:outline-none focus:bg-white/10 transition-all ${
+                      errors.name 
+                        ? 'border-red-500/50 focus:border-red-500' 
+                        : 'border-white/10 focus:border-[#00ff88]/50'
+                    }`}
                     required
                   />
                 </div>
@@ -160,7 +175,11 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleInputChange}
                     placeholder="john@example.com"
-                    className="w-full p-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-600 focus:outline-none focus:border-[#00ff88]/50 focus:bg-white/10 transition-all"
+                    className={`w-full p-4 bg-white/5 border rounded-xl text-white placeholder-gray-600 focus:outline-none focus:bg-white/10 transition-all ${
+                      errors.email 
+                        ? 'border-red-500/50 focus:border-red-500' 
+                        : 'border-white/10 focus:border-[#00ff88]/50'
+                    }`}
                     required
                   />
                 </div>
@@ -175,7 +194,11 @@ export default function Contact() {
                   value={formData.message}
                   onChange={handleInputChange}
                   placeholder="Tell me about your project..."
-                  className="w-full p-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-600 focus:outline-none focus:border-[#00ff88]/50 focus:bg-white/10 transition-all resize-none"
+                  className={`w-full p-4 bg-white/5 border rounded-xl text-white placeholder-gray-600 focus:outline-none focus:bg-white/10 transition-all resize-none ${
+                    errors.message 
+                      ? 'border-red-500/50 focus:border-red-500' 
+                      : 'border-white/10 focus:border-[#00ff88]/50'
+                  }`}
                   required
                 ></textarea>
               </div>
@@ -194,15 +217,27 @@ export default function Contact() {
               
               <button
                 type="submit"
-                disabled={isSubmitting}
-                className="w-full group py-4 bg-[#00ff88] text-[#0a0a0a] font-bold rounded-xl hover:shadow-[0_0_30px_rgba(0,255,136,0.4)] disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-3"
+                disabled={isSubmitting || submitSuccess}
+                className={`w-full group py-4 font-bold rounded-xl transition-all duration-300 flex items-center justify-center gap-3 ${
+                  submitSuccess 
+                    ? 'bg-emerald-500 text-white shadow-[0_0_30px_rgba(16,185,129,0.4)]' 
+                    : 'bg-[#00ff88] text-[#0a0a0a] hover:shadow-[0_0_30px_rgba(0,255,136,0.4)] hover:-translate-y-0.5'
+                } disabled:opacity-50 disabled:cursor-not-allowed`}
               >
                 {isSubmitting ? (
-                  <i className="fas fa-spinner animate-spin" />
+                  <>
+                    <i className="fas fa-spinner animate-spin text-lg" />
+                    <span>Sending...</span>
+                  </>
+                ) : submitSuccess ? (
+                  <>
+                    <i className="fas fa-check-circle text-lg animate-bounce" />
+                    <span>Message Sent!</span>
+                  </>
                 ) : (
                   <>
                     <span>Send Message</span>
-                    <i className="fas fa-paper-plane group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    <i className="fas fa-paper-plane group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform text-sm" />
                   </>
                 )}
               </button>
