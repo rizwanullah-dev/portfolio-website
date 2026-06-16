@@ -1,6 +1,5 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
 
@@ -10,8 +9,8 @@ const aboutData = {
   description2: "In my Software Engineering journey, I combine my academic excellence with hands-on experience. My expertise is building scalable web applications, RESTful APIs, and implementing modern development practices. I enjoy building things that actually work well and are easy to maintain.",
   achievements: [
     { label: "Graduated", value: "BS Software Eng.", icon: "fas fa-graduation-cap" },
-    { label: "Experience", value: "2+ Years", icon: "fas fa-briefcase" },
-    { label: "Projects", value: "6+ self project", icon: "fas fa-rocket" },
+    { label: "Status", value: "Software Engineering Graduate", icon: "fas fa-user-graduate" },
+    { label: "Projects", value: "6+ Production Projects", icon: "fas fa-rocket" },
     { label: "Code", value: "Weekly 50h+", icon: "fas fa-code" }
   ]
 };
@@ -24,7 +23,7 @@ export default function About() {
 
   const handleDownloadCV = () => {
     const link = document.createElement('a');
-    link.href = '/resume.pdf';
+    link.href = '/Rizwan_Ullah_cv.pdf';
     link.download = 'Rizwan_Ullah_CV.pdf';
     document.body.appendChild(link);
     link.click();

@@ -3,6 +3,16 @@
 import { useState, useRef } from 'react';
 import { useInView } from 'react-intersection-observer';
 
+interface Project {
+  title: string;
+  description: string;
+  github: string;
+  external: string;
+  tech: string[];
+  category: string;
+  year: string;
+}
+
 export default function Projects() {
   const { ref, inView } = useInView({
     threshold: 0.1,
@@ -11,39 +21,39 @@ export default function Projects() {
 
   const projects = [
     {
-      title: 'AI Website Builder',
-      description: 'An AI-powered website builder that generates complete, responsive websites from user prompts. Features include automated layout generation, component structure creation, and dynamic content optimization.',
-      github: 'https://github.com/Rizwan2005khan/AI-website-builder.git',
-      external: '#',
-      tech: ['TypeScript', 'React', 'TailwindCSS'], 
-      category: 'AI/ML',
-      year: '2025' 
-    },
-    {
       title: 'Project Management Platform',
       description: 'A full-featured project management platform supporting teams, task assignments, role-based access, progress tracking, and real-time updates. Built with PERN stack and scalable backend architecture.',
-      github: 'https://github.com/Rizwan2005khan/project-management.git',
+      github: 'https://github.com/rizwanullah-dev/project-management.git',
       external: '#',
       tech: ['JavaScript', 'PostgreSQL', 'React', 'Prisma', 'TailwindCSS', 'Clerk', 'Inngest'], 
       category: 'SaaS',
       year: '2025' 
     },
     {
-      title: 'AI Resume Generator',
-      description: 'An intelligent resume builder creating ATS-optimized, professional resumes. Features include customizable templates, role-specific content generation, AI-assisted suggestions, and instant PDF exports.',
-      github: 'https://github.com/Rizwan2005khan/Ai-Resume-Generator.git',
+      title: 'E-Commerce Web Application',
+      description: 'A feature-complete e-commerce platform covering product discovery, persistent cart with server-side stock validation, a full order lifecycle pipeline (Pending → Shipped → Delivered), and an admin CRUD dashboard for products, orders, and users.',
+      github: 'https://github.com/rizwanullah-dev/E-Commerce-Website.git',
       external: '#',
-      tech: ['JavaScript', 'React', 'MongoDB', 'Express', 'Node.js', 'Redux', 'TailwindCSS', 'Gamini API'], 
-      category: 'Productivity',
+      tech: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'JWT', 'REST API', 'Tailwind CSS'], 
+      category: 'E-Commerce',
       year: '2025' 
     },
     {
-      title: 'Sleep Tracker App',
-      description: 'A Next.js-based sleep tracking application that helps users log sleep patterns, analyze sleep quality, and visualize insights using interactive charts.',
-      github: 'https://github.com/Rizwan2005khan/Sleep-tracker-next.git',
-      external: '#', 
-      tech: ['Next.js', 'TailwindCSS', 'Geist Font'], 
-      category: 'HealthTech',
+      title: 'Car Rental Management Platform',
+      description: 'A production-grade car rental platform managing the full vehicle rental lifecycle — real-time availability checking, dynamic pricing based on category and date range, and a 2-tier RBAC system (User/Admin) with 20+ RESTful API endpoints and JWT-authenticated route guards.',
+      github: 'https://github.com/rizwanullah-dev/Car-Rental-.git',
+      external: '#',
+      tech: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'JWT', 'Tailwind CSS'], 
+      category: 'SaaS / E-Commerce',
+      year: '2025' 
+    },
+    {
+      title: 'AI Resume Generator',
+      description: 'An intelligent resume builder creating ATS-optimized, professional resumes. Features include customizable templates, role-specific content generation, AI-assisted suggestions, and instant PDF exports.',
+      github: 'https://github.com/rizwanullah-dev/Ai-Resume-Generator.git',
+      external: '#',
+      tech: ['JavaScript', 'React', 'MongoDB', 'Express', 'Node.js', 'Redux', 'TailwindCSS', 'Gamini API'], 
+      category: 'Productivity',
       year: '2025' 
     }
   ];
@@ -83,7 +93,7 @@ export default function Projects() {
 }
 
 function ProjectCard({ project, index, inView }: { 
-  project: any; 
+  project: Project; 
   index: number; 
   inView: boolean;
 }) {
@@ -144,25 +154,27 @@ function ProjectCard({ project, index, inView }: {
             {project.year}
           </span>
         </div>
-        <div className="flex gap-4">
+        <div className="flex items-center gap-3">
           <a 
             href={project.github} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="text-gray-500 hover:text-[#00ff88] text-xl transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-medium text-gray-300 hover:text-[#00ff88] hover:border-[#00ff88]/30 transition-all duration-300"
             title="View Code"
           >
-            <i className="fab fa-github" />
+            <i className="fab fa-github text-sm" />
+            <span>View Code</span>
           </a>
-          {project.external !== '#' && (
+          {project.external && project.external !== '#' && (
             <a 
               href={project.external} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-gray-500 hover:text-[#00ff88] text-xl transition-colors"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#00ff88]/10 border border-[#00ff88]/20 text-xs font-medium text-[#00ff88] hover:bg-[#00ff88]/20 hover:border-[#00ff88]/40 transition-all duration-300"
               title="Live Demo"
             >
-              <i className="fas fa-external-link-alt" />
+              <i className="fas fa-external-link-alt text-sm" />
+              <span>Live Demo</span>
             </a>
           )}
         </div>

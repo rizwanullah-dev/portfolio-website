@@ -52,6 +52,7 @@ export default function CursorTrail() {
   return (
     <>
       {trails.map(trail => {
+        // eslint-disable-next-line react-hooks/purity
         const age = Date.now() - trail.timestamp;
         const opacity = Math.max(0, 1 - age / 800);
         const scale = Math.max(0.3, 1 - age / 800);

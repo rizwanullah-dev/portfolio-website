@@ -4,7 +4,7 @@ export default function Footer() {
   const footerLinks = [
     {
       icon: 'fab fa-github',
-      url: 'https://github.com/Rizwan2005khan',
+      url: 'https://github.com/rizwanullah-dev',
       label: 'GitHub',
       color: 'hover:text-white'
     },
@@ -15,15 +15,15 @@ export default function Footer() {
       color: 'hover:text-blue-500'
     },
     {
-      icon: 'fab fa-facebook',
-      label: 'Facebook',
-      url: 'https://www.facebook.com/share/17rXqVgXcE/',
-      color: 'hover:text-blue-600'
+      icon: 'fas fa-globe',
+      label: 'Portfolio',
+      url: 'https://portfolio-website-pi-five-73.vercel.app',
+      color: 'hover:text-[#00ccff]'
     },
     {
       icon: 'fas fa-envelope',
       label: 'Email',
-      url: 'mailto:rizwanullah@example.com',
+      url: 'mailto:rizwanullahicp0306@gmail.com',
       color: 'hover:text-[#00ff88]'
     }
   ];

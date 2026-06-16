@@ -9,12 +9,16 @@ import Skills from '@/components/Skills';
 import Projects from '@/components/Projects';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
-import Experience from '@/components/Experience';
+
+interface WindowWithParticles {
+  particlesJS?: (id: string, config: unknown) => void;
+}
 
 export default function Home() {
   useEffect(() => {
-    if (typeof window !== 'undefined' && (window as any).particlesJS) {
-      (window as any).particlesJS('particles-js', particlesConfig);
+    const win = window as unknown as WindowWithParticles;
+    if (typeof window !== 'undefined' && win.particlesJS) {
+      win.particlesJS('particles-js', particlesConfig);
     }
   }, []);
 

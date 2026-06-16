@@ -29,19 +29,19 @@ export default function Contact() {
     {
       icon: 'fab fa-github',
       label: 'GitHub',
-      url: 'https://github.com/Rizwan2005khan',
+      url: 'https://github.com/rizwanullah-dev',
       color: 'group-hover:text-white'
     },
     {
-      icon: 'fab fa-facebook',
-      label: 'Facebook',
-      url: 'https://www.facebook.com/share/17rXqVgXcE/',
-      color: 'group-hover:text-blue-600'
+      icon: 'fas fa-globe',
+      label: 'Portfolio',
+      url: 'https://portfolio-website-pi-five-73.vercel.app',
+      color: 'group-hover:text-[#00ccff]'
     },
     {
       icon: 'fas fa-envelope',
       label: 'Email',
-      url: 'mailto:rizwanullah@example.com',
+      url: 'mailto:rizwanullahicp0306@gmail.com',
       color: 'group-hover:text-[#00ff88]'
     }
   ];
@@ -76,7 +76,7 @@ export default function Contact() {
       setSubmitSuccess(true);
       setFormData({ name: '', email: '', message: '' });
       setTimeout(() => setSubmitSuccess(false), 5000);
-    } catch (error) {
+    } catch {
       setSubmitError('Something went wrong. Please try again.');
     } finally {
       setIsSubmitting(false);

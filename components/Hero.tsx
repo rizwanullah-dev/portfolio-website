@@ -2,14 +2,15 @@
 
 import { useEffect, useState } from "react";
 
+const words = [
+  "Software Engineer",
+  "MERN Stack Developer",
+  "Full Stack Developer",
+  "Problem Solver",
+  "Tech Enthusiast",
+];
+
 export default function Hero() {
-  const words = [
-    "Software Engineer",
-    "MERN Stack Developer",
-    "Full Stack Developer",
-    "Problem Solver",
-    "Tech Enthusiast",
-  ];
 
   const [currentWord, setCurrentWord] = useState("");
   const [wordIndex, setWordIndex] = useState(0);
@@ -51,9 +52,9 @@ export default function Hero() {
   };
 
   const socialLinks = [
-    { icon: "fab fa-github", url: "https://github.com/Rizwan2005khan", label: "GitHub" },
+    { icon: "fab fa-github", url: "https://github.com/rizwanullah-dev", label: "GitHub" },
     { icon: "fab fa-linkedin", url: "https://www.linkedin.com/in/rizwan-ullah-b74793290", label: "LinkedIn" },
-    { icon: "fab fa-facebook", url: "https://www.facebook.com/share/17rXqVgXcE", label: "Facebook" },
+    { icon: "fas fa-globe", url: "https://portfolio-website-pi-five-73.vercel.app", label: "Portfolio" },
   ];
 
   return (

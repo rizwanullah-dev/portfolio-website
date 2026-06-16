@@ -85,11 +85,11 @@ function DeveloperDashboardIllustration({ className }: IllustrationProps) {
             <tspan dx="5" fill="#fff"> developer = </tspan>
             <tspan fill="#00ff88">{`{`}</tspan>
             <tspan x="20" dy="14" fill="#fff">  name: </tspan>
-            <tspan fill="#00ff88">"John Doe"</tspan>
+            <tspan fill="#00ff88">&quot;John Doe&quot;</tspan>
             <tspan x="20" dy="14" fill="#fff">  role: </tspan>
-            <tspan fill="#00ff88">"Full-Stack Dev"</tspan>
+            <tspan fill="#00ff88">&quot;Full-Stack Dev&quot;</tspan>
             <tspan x="20" dy="14" fill="#fff">  stack: [</tspan>
-            <tspan x="30" dy="14" fill="#00ff88">"React", "Node.js"</tspan>
+            <tspan x="30" dy="14" fill="#00ff88">&quot;React&quot;, &quot;Node.js&quot;</tspan>
             <tspan x="20" dy="14" fill="#00ff88">  ]</tspan>
             <tspan x="20" dy="14" fill="#00ff88">{`}`}</tspan>
           </text>
@@ -544,6 +544,7 @@ function ProfessionalCardStack({ className }: IllustrationProps) {
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function SimpleTimelineVisualization({ className }: IllustrationProps) {
   return (
     <div className={`relative w-[280px] h-[380px] ${className || ''}`}>

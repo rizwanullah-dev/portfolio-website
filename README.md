@@ -59,14 +59,14 @@ I am a **BS Software Engineering graduate from Islamia College Peshawar**, combi
 
 ## 📂 Featured Projects
 
-### 🔹 AI Website Builder
-An AI-powered website builder that generates complete, responsive websites from user prompts. Features include automated layout generation, component structure creation, and dynamic content optimization.
+### 🔹 Project Management Platform
+A full-featured project management platform supporting teams, task assignments, role-based access, progress tracking, and real-time updates. Built with PERN stack and scalable backend architecture.
 
-### 🔹Sleep Tracker App
-A Next.js-based sleep tracking application that helps users log sleep patterns, analyze sleep quality, and visualize insights using interactive charts.
+### 🔹 E-Commerce Web Application
+A feature-complete e-commerce platform covering product discovery, persistent cart with server-side stock validation, a full order lifecycle pipeline (Pending → Shipped → Delivered), and an admin CRUD dashboard for products, orders, and users.
 
-### 🔹 Project Management System (PERN Stack)
-A complete project and task management system designed for teams. Supports task assignment, progress tracking, and role-based collaboration using a centralized dashboard.
+### 🔹 Car Rental Management Platform
+A production-grade car rental platform managing the full vehicle rental lifecycle — real-time availability checking, dynamic pricing based on category and date range, and a 2-tier RBAC system (User/Admin) with 20+ RESTful API endpoints and JWT-authenticated route guards.
 
 ### 🔹 AI Resume Generator
 An intelligent resume builder creating ATS-optimized, professional resumes. Features include customizable templates, role-specific content generation, AI-assisted suggestions, and instant PDF exports.
@@ -107,7 +107,7 @@ https://portfolio-website-pi-five-73.vercel.app/
 📬 Contact Me:
 📧 Email: rizwanullahicp0306@gmail.com
 💼 LinkedIn: https://www.linkedin.com/in/rizwan-ullah-b74793290
-🐙 GitHub: https://github.com/Rizwan2005khan
+🐙 GitHub: https://github.com/rizwanullah-dev
 
 ⭐ Support & Feedback
 If you find this portfolio useful or inspiring, feel free to star this repository ⭐
