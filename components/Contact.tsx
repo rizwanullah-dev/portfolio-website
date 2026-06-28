@@ -61,13 +61,13 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     const newErrors = {
       name: !formData.name.trim(),
       email: !formData.email.trim() || !/\S+@\S+\.\S+/.test(formData.email),
       message: !formData.message.trim()
     };
-    
+
     setErrors(newErrors);
 
     if (newErrors.name || newErrors.email || newErrors.message) {
@@ -97,9 +97,9 @@ export default function Contact() {
 
   return (
     <section id="contact" className="py-24 relative overflow-hidden">
-       {/* Background Decor */}
-       <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#00ff88]/5 rounded-full blur-[120px] -z-10" />
-       <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#00ccff]/5 rounded-full blur-[120px] -z-10" />
+      {/* Background Decor */}
+      <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#00ff88]/5 rounded-full blur-[120px] -z-10" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#00ccff]/5 rounded-full blur-[120px] -z-10" />
 
       <div className="container">
         <div className="text-center space-y-4 mb-20">
@@ -108,12 +108,11 @@ export default function Contact() {
             Let&apos;s build something great together. I&apos;m currently open to full-stack engineering roles and freelance opportunities.
           </p>
         </div>
-        
-        <div 
-          ref={ref} 
-          className={`grid lg:grid-cols-[0.8fr,1.2fr] gap-12 lg:gap-20 transition-all duration-1000 ${
-            inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-          }`}
+
+        <div
+          ref={ref}
+          className={`grid lg:grid-cols-[0.8fr,1.2fr] gap-12 lg:gap-20 transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+            }`}
         >
           {/* Contact Info */}
           <div className="space-y-8">
@@ -123,7 +122,7 @@ export default function Contact() {
                 Whether you have a full-time opportunity, a freelance project, or just want to discuss web engineering, feel free to connect.
               </p>
             </div>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-4">
               {contactLinks.map((link) => (
                 <a
@@ -144,7 +143,7 @@ export default function Contact() {
               ))}
             </div>
           </div>
-          
+
           {/* Contact Form */}
           <div className="glass-card p-8 sm:p-10 rounded-2xl relative">
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -157,12 +156,11 @@ export default function Contact() {
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    placeholder="John Doe"
-                    className={`w-full p-4 bg-white/5 border rounded-xl text-white placeholder-gray-600 focus:outline-none focus:bg-white/10 transition-all ${
-                      errors.name 
-                        ? 'border-red-500/50 focus:border-red-500' 
+                    placeholder="Rizwan Ullah"
+                    className={`w-full p-4 bg-white/5 border rounded-xl text-white placeholder-gray-600 focus:outline-none focus:bg-white/10 transition-all ${errors.name
+                        ? 'border-red-500/50 focus:border-red-500'
                         : 'border-white/10 focus:border-[#00ff88]/50'
-                    }`}
+                      }`}
                     required
                   />
                 </div>
@@ -174,17 +172,16 @@ export default function Contact() {
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    placeholder="john@example.com"
-                    className={`w-full p-4 bg-white/5 border rounded-xl text-white placeholder-gray-600 focus:outline-none focus:bg-white/10 transition-all ${
-                      errors.email 
-                        ? 'border-red-500/50 focus:border-red-500' 
+                    placeholder="rizwanullah@example.com"
+                    className={`w-full p-4 bg-white/5 border rounded-xl text-white placeholder-gray-600 focus:outline-none focus:bg-white/10 transition-all ${errors.email
+                        ? 'border-red-500/50 focus:border-red-500'
                         : 'border-white/10 focus:border-[#00ff88]/50'
-                    }`}
+                      }`}
                     required
                   />
                 </div>
               </div>
-              
+
               <div className="space-y-2">
                 <label htmlFor="message" className="text-xs font-mono text-gray-500 uppercase tracking-wider">Your Message</label>
                 <textarea
@@ -194,35 +191,33 @@ export default function Contact() {
                   value={formData.message}
                   onChange={handleInputChange}
                   placeholder="Tell me about your project..."
-                  className={`w-full p-4 bg-white/5 border rounded-xl text-white placeholder-gray-600 focus:outline-none focus:bg-white/10 transition-all resize-none ${
-                    errors.message 
-                      ? 'border-red-500/50 focus:border-red-500' 
+                  className={`w-full p-4 bg-white/5 border rounded-xl text-white placeholder-gray-600 focus:outline-none focus:bg-white/10 transition-all resize-none ${errors.message
+                      ? 'border-red-500/50 focus:border-red-500'
                       : 'border-white/10 focus:border-[#00ff88]/50'
-                  }`}
+                    }`}
                   required
                 ></textarea>
               </div>
-              
+
               {submitError && (
                 <div className="p-4 bg-red-500/10 border border-red-500/50 rounded-xl text-red-400 text-sm flex items-center gap-3">
                   <i className="fas fa-exclamation-circle" /> {submitError}
                 </div>
               )}
-              
+
               {submitSuccess && (
                 <div className="p-4 bg-[#00ff88]/10 border border-[#00ff88]/50 rounded-xl text-[#00ff88] text-sm flex items-center gap-3">
                   <i className="fas fa-check-circle" /> Message sent successfully! I&apos;ll get back to you soon.
                 </div>
               )}
-              
+
               <button
                 type="submit"
                 disabled={isSubmitting || submitSuccess}
-                className={`w-full group py-4 font-bold rounded-xl transition-all duration-300 flex items-center justify-center gap-3 ${
-                  submitSuccess 
-                    ? 'bg-emerald-500 text-white shadow-[0_0_30px_rgba(16,185,129,0.4)]' 
+                className={`w-full group py-4 font-bold rounded-xl transition-all duration-300 flex items-center justify-center gap-3 ${submitSuccess
+                    ? 'bg-emerald-500 text-white shadow-[0_0_30px_rgba(16,185,129,0.4)]'
                     : 'bg-[#00ff88] text-[#0a0a0a] hover:shadow-[0_0_30px_rgba(0,255,136,0.4)] hover:-translate-y-0.5'
-                } disabled:opacity-50 disabled:cursor-not-allowed`}
+                  } disabled:opacity-50 disabled:cursor-not-allowed`}
               >
                 {isSubmitting ? (
                   <>
@@ -247,4 +242,4 @@ export default function Contact() {
       </div>
     </section>
   );
-}
+}
