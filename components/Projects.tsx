@@ -30,9 +30,8 @@ export default function Projects() {
       github: 'https://github.com/rizwanullah-dev',
       external: '#',
       tech: [
-        'TypeScript', 'React.js', 'Node.js', 'Express.js', 'MongoDB', 'Redis',
-        'Docker', 'Python', 'Gemini AI', 'Groq', 'WebRTC', 'Jitsi',
-        'Twilio', 'Vapi.ai', 'GitHub Actions', 'Nginx',
+        'React.js', 'Node.js', 'Express.js', 'MongoDB', 'Docker', 'Python', 'Gemini AI', 'Groq', 'WebRTC', 'Jitsi',
+        'Twilio', 'Vapi.ai',
       ],
       category: 'SaaS · Healthcare',
       year: '2025',

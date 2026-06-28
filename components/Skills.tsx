@@ -44,7 +44,6 @@ const skillsData = [
   { name: 'Git', icon: FaGit, color: '#F05032' },
   { name: 'Docker', icon: SiDocker, color: '#2496ED' },
   { name: 'Redis', icon: SiRedis, color: '#DC382D' },
-  { name: 'GitHub Actions', icon: SiGithubactions, color: '#2088FF' },
   { name: 'Vercel', icon: SiVercel, color: '#ffffff' },
   { name: 'Postman', icon: SiPostman, color: '#FF6C37' },
 ];
@@ -75,9 +74,8 @@ export default function Skills() {
             <div
               key={skill.name}
               style={{ transitionDelay: `${index * 40}ms` }}
-              className={`flex flex-col items-center justify-center gap-4 glass-card p-6 sm:p-8 rounded-2xl group transition-all duration-500 hover:border-[#00ff88]/30 hover:shadow-[0_0_25px_rgba(0,255,136,0.15)] ${
-                inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-              }`}
+              className={`flex flex-col items-center justify-center gap-4 glass-card p-6 sm:p-8 rounded-2xl group transition-all duration-500 hover:border-[#00ff88]/30 hover:shadow-[0_0_25px_rgba(0,255,136,0.15)] ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                }`}
             >
               <div className="relative">
                 <skill.icon
