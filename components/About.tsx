@@ -128,16 +128,22 @@ export default function About() {
                 </div>
 
                 {/* Image area */}
-                <div className="relative aspect-[4/5] w-full">
+                <div className="relative aspect-[4/5] w-full bg-[#00ff88]/5">
                   {!imageError ? (
-                    <Image
-                      src="/rizwan.png"
-                      alt="Rizwan Ullah — Full Stack Software Engineer"
-                      fill
-                      className="object-cover grayscale-[30%] group-hover:grayscale-0 group-hover:scale-[1.03] transition-all duration-700"
-                      priority
-                      onError={() => setImageError(true)}
-                    />
+                    <>
+                      <Image
+                        src="/rizwan.png"
+                        alt="Rizwan Ullah — Full Stack Software Engineer"
+                        fill
+                        className="object-cover opacity-100 grayscale contrast-[1.1] group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-[1.02] transition-all duration-500"
+                        priority
+                        onError={() => setImageError(true)}
+                      />
+                      {/* Premium Green Tint Multiply Overlay */}
+                      <div className="absolute inset-0 bg-[#00ff88]/20 mix-blend-multiply group-hover:opacity-0 transition-opacity duration-500 pointer-events-none" />
+                      {/* Darkening Shadow Overlay */}
+                      <div className="absolute inset-0 bg-slate-950/40 group-hover:opacity-0 transition-opacity duration-500 pointer-events-none" />
+                    </>
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#0d1a12] to-[#050e0a]">
                       <span className="text-6xl font-black text-gradient-primary tracking-widest select-none">
