@@ -4,172 +4,173 @@ import { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
 
-const aboutData = {
-  title: "Who I Am ?",
-  description1: "Hello! I'm Rizwan Ullah, a passionate Software Engineer and Full Stack Developer focused on MERN and PERN stacks, based in Peshawar, Pakistan.",
-  description2: "In my Software Engineering journey, I combine my academic excellence with hands-on experience. My expertise is building scalable web applications, RESTful APIs, and implementing modern development practices. I enjoy building things that actually work well and are easy to maintain.",
-  achievements: [
-    { label: "Graduated", value: "BS Software Eng. (2026)", icon: "fas fa-graduation-cap" },
-    { label: "Stack", value: "MERN & PERN", icon: "fas fa-layer-group" },
-    { label: "Projects", value: "4+ Production Projects", icon: "fas fa-rocket" },
-    { label: "Code", value: "Weekly 50h+", icon: "fas fa-code" }
-  ]
-};
+const stats = [
+  { value: '4+', label: 'Production\nProjects' },
+  { value: '50h+', label: 'Weekly\nCoding' },
+  { value: '2+', label: 'Years\nExperience' },
+  { value: '2026', label: 'Graduation\nYear' },
+];
+
+const highlights = [
+  { icon: 'fas fa-graduation-cap', text: 'BS Software Engineering — Islamia College University Peshawar' },
+  { icon: 'fas fa-layer-group', text: 'MERN · PERN · Next.js full-stack specialist' },
+  { icon: 'fas fa-map-marker-alt', text: 'Peshawar, Pakistan — Open to remote & on-site roles' },
+  { icon: 'fas fa-circle-check', text: 'Available for Junior Software Engineer & Full-Stack roles' },
+];
 
 export default function About() {
-  const { ref, inView } = useInView({
-    threshold: 0.1,
-    triggerOnce: true,
-  });
-
+  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
   const [imageError, setImageError] = useState(false);
 
   const handleDownloadCV = () => {
     const link = document.createElement('a');
-    link.href = '/Rizwan_Ullah_CV.pdf';
-    link.download = 'Rizwan_Ullah_CV.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
-  const handleDownloadResume = () => {
-    const link = document.createElement('a');
-    link.href = '/Rizwan_Ullah_Resume_1Page.pdf';
-    link.download = 'Rizwan_Ullah_Resume_1Page.pdf';
+    link.href = '/Rizwan_Ullah_Resume.pdf';
+    link.download = 'Rizwan_Ullah_Resume.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
 
   return (
-    <section id="about" className="relative py-24 overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full -z-10 opacity-30">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#00ff88]/5 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#00ccff]/5 rounded-full blur-[120px]" />
+    <section id="about" className="relative py-28 overflow-hidden">
+      {/* Ambient background */}
+      <div className="absolute inset-0 -z-10 pointer-events-none">
+        <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-[#00ff88]/5 rounded-full blur-[140px]" />
+        <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-[#00ccff]/5 rounded-full blur-[140px]" />
       </div>
 
-      <div 
+      <div
         ref={ref}
-        className={`container transition-all duration-1000 ${
-          inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
-        }`}
+        className={`container transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'
+          }`}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          
-          {/* TEXT CONTENT */}
+        {/* ── Section label ── */}
+
+        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-16 lg:gap-24 items-start">
+
+          {/* ── LEFT: Text content ── */}
           <div className="space-y-10">
-            <div className="space-y-4">
-              <h2 className="text-gradient-primary inline-block">
-                {aboutData.title}
+
+            {/* Heading */}
+            <div>
+              <h2 className="text-gradient-primary leading-tight mb-3">
+                Building the web,<br />one stack at a time.
               </h2>
-              <div className="h-1.5 w-20 bg-gradient-to-r from-[#00ff88] to-[#00ccff] rounded-full" />
-            </div>
-            
-            <div className="space-y-6 text-gray-300">
-              <p className="leading-relaxed">
-                {aboutData.description1}
-              </p>
-              <p className="leading-relaxed">
-                {aboutData.description2}
+              <p className="text-[#00ff88] font-mono text-sm tracking-wide">
+                Full Stack Software Engineer · Pakistan
               </p>
             </div>
 
-            {/* Achievements Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4 gap-4">
-              {aboutData.achievements.map((achievement, index) => (
-                <div 
-                  key={index} 
-                  className="glass-card p-4 rounded-xl flex flex-col items-center text-center gap-2 group"
-                >
-                  <i className={`${achievement.icon} text-[#00ff88] text-xl group-hover:scale-110 transition-transform`} />
-                  <div className="flex flex-col">
-                    <span className="text-[10px] uppercase tracking-widest text-gray-500">{achievement.label}</span>
-                    <span className="text-xs font-bold text-white">{achievement.value}</span>
-                  </div>
-                </div>
+            {/* Bio paragraphs */}
+            <div className="space-y-5 text-gray-400 leading-relaxed">
+              <p>
+                I&apos;m <span className="text-white font-medium">Rizwan Ullah</span>, a software engineer
+                passionate about building products that solve real problems. With expertise across the
+                full stack — from React and Next.js on the frontend to Node.js, Express, PostgreSQL,
+                and MongoDB on the backend — I focus on writing clean, maintainable, and performant code.
+              </p>
+              <p>
+                I graduated with a <span className="text-white font-medium">BS in Software Engineering</span> from{' '}
+                <span className="text-white font-medium">Islamia College University Peshawar</span> in 2026,
+                and I have been applying that foundation to real production systems — including a multi-tenant
+                SaaS healthcare platform, project management tools, and AI-integrated applications.
+              </p>
+              <p>
+                I believe great software is about more than just making things work — it&apos;s about
+                architecture decisions, developer experience, and building for scale from day one.
+              </p>
+            </div>
+
+            {/* Highlights list */}
+            <ul className="space-y-3">
+              {highlights.map((item) => (
+                <li key={item.text} className="flex items-start gap-3 text-sm text-gray-400">
+                  <i className={`${item.icon} text-[#00ff88] mt-0.5 shrink-0 w-4 text-center`} />
+                  <span>{item.text}</span>
+                </li>
               ))}
-            </div>
+            </ul>
 
-            {/* Download Buttons Row */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <button 
+            {/* CTA buttons */}
+            <div className="flex flex-wrap gap-4 pt-2">
+              <button
                 onClick={handleDownloadCV}
-                className="group relative px-6 py-4 bg-white/5 border border-white/10 hover:border-[#00ff88]/50 rounded-xl transition-all duration-300 overflow-hidden flex-1 sm:flex-initial"
+                className="group flex items-center gap-2.5 px-6 py-3 bg-[#00ff88] text-[#0a0a0a] font-bold rounded-xl hover:bg-[#00ff88]/90 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(0,255,136,0.35)] transition-all duration-300"
               >
-                <span className="relative z-10 flex items-center justify-center gap-3 font-bold text-white group-hover:text-[#00ff88] transition-colors whitespace-nowrap">
-                  <i className="fas fa-download" /> Download CV
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-[#00ff88]/10 to-[#00ccff]/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <i className="fas fa-download text-sm" />
+                Download CV
               </button>
-
-              <button 
-                onClick={handleDownloadResume}
-                className="group relative px-6 py-4 bg-white/5 border border-white/10 hover:border-[#00ccff]/50 rounded-xl transition-all duration-300 overflow-hidden flex-1 sm:flex-initial"
+              <a
+                href="#contact"
+                className="group flex items-center gap-2.5 px-6 py-3 border border-white/10 text-white font-bold rounded-xl hover:bg-white/5 hover:border-[#00ff88]/30 hover:-translate-y-0.5 transition-all duration-300"
               >
-                <span className="relative z-10 flex items-center justify-center gap-3 font-bold text-white group-hover:text-[#00ccff] transition-colors whitespace-nowrap">
-                  <i className="fas fa-download" /> Download Resume
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-[#00ccff]/10 to-[#00ff88]/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-              </button>
+                <i className="fas fa-paper-plane text-sm text-[#00ff88]" />
+                Let&apos;s Talk
+              </a>
             </div>
           </div>
 
-          {/* IMAGE SECTION */}
-          <div className="hidden lg:flex justify-center">
-            <div className="relative">
-              {/* Main Image Decoration */}
-              <div className={`absolute -inset-4 bg-gradient-to-tr from-[#00ff88]/20 to-[#00ccff]/20 blur-2xl animate-pulse-subtle ${imageError ? 'rounded-full' : 'rounded-3xl'}`} />
-              
-              <div className={`relative ${imageError ? 'w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] lg:w-[350px] lg:h-[350px]' : 'w-[280px] h-[340px] sm:w-[320px] sm:h-[400px] lg:w-[350px] lg:h-[450px]'}`}>
-                <div className={`absolute inset-0 border-2 border-white/10 -rotate-6 group-hover:rotate-0 transition-transform duration-500 ${imageError ? 'rounded-full' : 'rounded-3xl'}`} />
-                <div className={`absolute inset-0 border-2 border-[#00ff88]/30 rotate-3 group-hover:rotate-0 transition-transform duration-500 ${imageError ? 'rounded-full' : 'rounded-3xl'}`} />
-                
-                <div className={`relative h-full w-full overflow-hidden border-4 border-white/10 shadow-2xl transition-all duration-500 ${imageError ? 'rounded-full' : 'rounded-3xl'}`}>
+          {/* ── RIGHT: Image + Stats ── */}
+          <div className="flex flex-col gap-8 lg:items-end w-full">
+
+            {/* Photo card */}
+            <div className="relative group mx-auto lg:ml-auto lg:mr-0 w-full max-w-sm">
+              {/* Glow rings */}
+              <div className="absolute -inset-0.5 bg-gradient-to-tr from-[#00ff88]/30 to-[#00ccff]/20 rounded-2xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+              <div className="relative rounded-2xl overflow-hidden border border-white/10 group-hover:border-[#00ff88]/30 transition-colors duration-500 bg-[#0f0f0f]">
+                {/* Decorative top bar */}
+                <div className="flex items-center gap-1.5 px-4 py-3 border-b border-white/5 bg-white/[0.03]">
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
+                  <span className="ml-auto text-[10px] font-mono text-gray-600">rizwan-ullah.jpg</span>
+                </div>
+
+                {/* Image area */}
+                <div className="relative aspect-[4/5] w-full">
                   {!imageError ? (
                     <Image
-                      src="/rizwan.png" 
-                      alt="Rizwan Ullah"
+                      src="/rizwan.png"
+                      alt="Rizwan Ullah — Full Stack Software Engineer"
                       fill
-                      className="object-cover grayscale hover:grayscale-0 transition-all duration-700 hover:scale-105"
+                      className="object-cover grayscale-[30%] group-hover:grayscale-0 group-hover:scale-[1.03] transition-all duration-700"
                       priority
                       onError={() => setImageError(true)}
                     />
                   ) : (
-                    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#0a0f0d] to-[#030504] w-full h-full">
-                      <div className="w-[80%] h-[80%] rounded-full bg-gradient-to-br from-[#00ff88]/10 to-[#00ccff]/10 border border-white/10 flex items-center justify-center shadow-[0_0_40px_rgba(0,255,136,0.15)] relative overflow-hidden group">
-                        <div className="absolute -inset-1 bg-gradient-to-tr from-[#00ff88] to-[#00ccff] rounded-full blur opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
-                        <span className="text-5xl sm:text-6xl font-black text-gradient-primary tracking-widest relative z-10 select-none">
-                          RU
-                        </span>
-                      </div>
+                    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#0d1a12] to-[#050e0a]">
+                      <span className="text-6xl font-black text-gradient-primary tracking-widest select-none">
+                        RU
+                      </span>
                     </div>
                   )}
-                  
-                  {/* Overlay Gradient (only for image, not for initials fallback) */}
-                  {!imageError && (
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/60 to-transparent" />
-                  )}
-                  
-                  {/* Floating Tech Badges */}
-                  {!imageError && (
-                    <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 px-4 py-2 bg-black/60 backdrop-blur-md rounded-full border border-white/10">
-                      <i className="fab fa-react text-[#00d8ff]" />
-                      <i className="fab fa-node-js text-[#68a063]" />
-                      <i className="fab fa-js text-[#f7df1e]" />
-                      <i className="fas fa-database text-[#47a248]" />
-                    </div>
-                  )}
+
+                  {/* Bottom overlay name plate */}
+                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent pt-16 pb-5 px-5">
+                    <p className="text-white font-bold text-lg leading-tight">Rizwan Ullah</p>
+                    <p className="text-[#00ff88] text-xs font-mono mt-0.5">Full Stack Software Engineer</p>
+                  </div>
                 </div>
               </div>
-
-              {/* Corner Accents */}
-              <div className="absolute -top-6 -right-6 w-12 h-12 border-t-2 border-r-2 border-[#00ff88]/50 rounded-tr-xl" />
-              <div className="absolute -bottom-6 -left-6 w-12 h-12 border-b-2 border-l-2 border-[#00ccff]/50 rounded-bl-xl" />
             </div>
-          </div>
 
+            {/* Stats row */}
+            <div className="grid grid-cols-4 gap-3 lg:max-w-sm lg:ml-auto w-full">
+              {stats.map((stat) => (
+                <div
+                  key={stat.label}
+                  className="glass-card rounded-xl p-3 flex flex-col items-center text-center gap-1 group hover:border-[#00ff88]/30 transition-colors"
+                >
+                  <span className="text-xl font-bold text-gradient-primary">{stat.value}</span>
+                  <span className="text-[9px] uppercase tracking-widest text-gray-500 leading-tight whitespace-pre-line">
+                    {stat.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+          </div>
         </div>
       </div>
     </section>

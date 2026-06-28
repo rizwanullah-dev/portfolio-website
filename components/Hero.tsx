@@ -90,9 +90,13 @@ export default function Hero() {
             </div>
 
             <p className="text-[#a0a0a0] leading-relaxed max-w-xl mx-auto lg:mx-0">
-              Transforming complex ideas into elegant digital solutions. Specialist in the 
-              <span className="text-white px-2">MERN Stack</span> 
-              building scalable, high-performance web applications with a focus on user experience.
+              Full Stack Software Engineer specialising in MERN, PERN, and Next.js ecosystems.
+              I build scalable web applications, RESTful APIs, and AI-integrated platforms using{" "}
+              <span className="text-white">TypeScript</span>,{" "}
+              <span className="text-white">React.js</span>,{" "}
+              <span className="text-white">Node.js</span>,{" "}
+              <span className="text-white">MongoDB</span>, and{" "}
+              <span className="text-white">PostgreSQL</span>.
             </p>
 
             <div className="flex flex-wrap justify-center lg:justify-start gap-4">
@@ -143,7 +147,7 @@ export default function Hero() {
                 <CodeLine n="01"><span className="text-[#ff79c6]">const</span> <span className="text-[#50fa7b]">developer</span> = &#123;</CodeLine>
                 <CodeLine n="02">&nbsp;&nbsp;name: <span className="text-[#f1fa8c]">&apos;Rizwan Ullah&apos;</span>,</CodeLine>
                 <CodeLine n="03">&nbsp;&nbsp;role: <span className="text-[#f1fa8c]">&apos;Full Stack Engineer&apos;</span>,</CodeLine>
-                <CodeLine n="04">&nbsp;&nbsp;skills: [<span className="text-[#f1fa8c]">&apos;MERN Stack&apos;</span>, <span className="text-[#f1fa8c]">&apos;Next.js&apos;</span>],</CodeLine>
+                <CodeLine n="04">&nbsp;&nbsp;skills: [<span className="text-[#f1fa8c]">&apos;TypeScript&apos;</span>, <span className="text-[#f1fa8c]">&apos;MERN Stack&apos;</span>, <span className="text-[#f1fa8c]">&apos;Next.js&apos;</span>, <span className="text-[#f1fa8c]">&apos;REST APIs&apos;</span>],</CodeLine>
                 <CodeLine n="05">&nbsp;&nbsp;passion: <span className="text-[#f1fa8c]">&apos;Clean Code&apos;</span>,</CodeLine>
                 <CodeLine n="06">&nbsp;&nbsp;location: <span className="text-[#f1fa8c]">&apos;Pakistan&apos;</span></CodeLine>
                 <CodeLine n="07">&#125;;</CodeLine>

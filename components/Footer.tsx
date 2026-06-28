@@ -86,6 +86,11 @@ export default function Footer() {
             </span>
           </div>
         </div>
+
+        {/* ATS keyword line — plain DOM text for recruiter bots */}
+        <p className="mt-6 text-center text-[10px] font-mono text-gray-700 leading-relaxed">
+          BS Software Engineering Graduate · Islamia College University Peshawar · 2026 · MERN Stack · TypeScript · Full Stack Developer · Available for hire
+        </p>
       </div>
     </footer>
   );
