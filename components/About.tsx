@@ -6,10 +6,11 @@ import Image from 'next/image';
 
 const stats = [
   { value: '4+', label: 'Production\nProjects' },
-  { value: '50h+', label: 'Weekly\nCoding' },
-  { value: '2+', label: 'Years\nExperience' },
+  { value: '40h+', label: 'Weekly\nCoding' },
+  { value: '100%', label: 'COMMITMENT TO LEARNING' },
   { value: '2026', label: 'Graduation\nYear' },
 ];
+
 
 const highlights = [
   { icon: 'fas fa-graduation-cap', text: 'BS Software Engineering — Islamia College University Peshawar' },
@@ -32,7 +33,7 @@ export default function About() {
   };
 
   return (
-    <section id="about" className="relative py-28 overflow-hidden">
+    <section id="about" className="relative py-16 sm:py-20 lg:py-20 overflow-hidden scroll-mt-20">
       {/* Ambient background */}
       <div className="absolute inset-0 -z-10 pointer-events-none">
         <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-[#00ff88]/5 rounded-full blur-[140px]" />
@@ -46,7 +47,7 @@ export default function About() {
       >
         {/* ── Section label ── */}
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-16 lg:gap-24 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-10 lg:gap-16 items-center">
 
           {/* ── LEFT: Text content ── */}
           <div className="space-y-10">
@@ -108,10 +109,25 @@ export default function About() {
                 Let&apos;s Talk
               </a>
             </div>
+
+            {/* Stats row — mobile only */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full lg:hidden pt-2">
+              {stats.map((stat) => (
+                <div
+                  key={stat.label}
+                  className="glass-card rounded-xl p-3 flex flex-col items-center text-center gap-1 group hover:border-[#00ff88]/30 transition-colors"
+                >
+                  <span className="text-xl font-bold text-gradient-primary">{stat.value}</span>
+                  <span className="text-[9px] uppercase tracking-widest text-gray-500 leading-tight whitespace-pre-line">
+                    {stat.label}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* ── RIGHT: Image + Stats ── */}
-          <div className="flex flex-col gap-8 lg:items-end w-full">
+          <div className="hidden lg:flex flex-col gap-8 lg:items-end w-full">
 
             {/* Photo card */}
             <div className="relative group mx-auto lg:ml-auto lg:mr-0 w-full max-w-sm">
@@ -162,7 +178,7 @@ export default function About() {
             </div>
 
             {/* Stats row */}
-            <div className="grid grid-cols-4 gap-3 lg:max-w-sm lg:ml-auto w-full">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 lg:max-w-sm lg:ml-auto w-full">
               {stats.map((stat) => (
                 <div
                   key={stat.label}

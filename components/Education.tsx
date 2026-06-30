@@ -17,19 +17,18 @@ export default function Education() {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
 
   return (
-    <section id="education" className="relative py-24 overflow-hidden">
+    <section id="education" className="relative py-16 sm:py-20 lg:py-20 overflow-hidden scroll-mt-20">
       {/* Background decor */}
       <div className="absolute top-0 left-1/4 w-[400px] h-[400px] bg-[#00ff88]/5 rounded-full blur-[120px] -z-10" />
       <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-[#00ccff]/5 rounded-full blur-[120px] -z-10" />
 
       <div
         ref={ref}
-        className={`container transition-all duration-1000 ${
-          inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
-        }`}
+        className={`container transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
+          }`}
       >
         {/* Section Header */}
-        <div className="space-y-4 mb-16">
+        <div className="space-y-4 mb-10 sm:mb-16">
           <h2 className="text-gradient-primary inline-block">Education</h2>
           <div className="h-1.5 w-20 bg-gradient-to-r from-[#00ff88] to-[#00ccff] rounded-full" />
         </div>

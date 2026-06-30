@@ -52,13 +52,13 @@ export default function Skills() {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
 
   return (
-    <section id="skills" className="py-24 relative overflow-hidden">
+    <section id="skills" className="py-16 sm:py-20 lg:py-20 relative overflow-hidden scroll-mt-20">
       {/* Background Decor */}
       <div className="absolute top-1/2 left-0 w-64 h-64 bg-[#00ff88]/5 rounded-full blur-[100px] -z-10" />
       <div className="absolute bottom-1/2 right-0 w-64 h-64 bg-[#00ccff]/5 rounded-full blur-[100px] -z-10" />
 
       <div className="container">
-        <div className="text-center space-y-4 mb-20">
+        <div className="text-center space-y-4 mb-12 sm:mb-16 lg:mb-20">
           <h2 className="text-gradient-primary">Skills &amp; Technologies</h2>
           <p className="text-gray-500 max-w-2xl mx-auto">
             A comprehensive toolkit of modern technologies I use to bring digital visions to life.

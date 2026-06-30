@@ -731,7 +731,7 @@ function ProfessionalExperienceCard({
       <div className={`absolute -inset-0.5 bg-gradient-to-r from-[#00ff88]/20 to-[#0088ff]/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}></div>
       
       <div className="relative z-10">
-        <div className="flex justify-between items-start mb-4">
+        <div className="flex flex-col sm:flex-row justify-between items-start gap-2 mb-4">
           <div>
             <h3 className="text-lg font-bold text-white group-hover:text-[#00ff88] transition-colors duration-300">
               {jobtitle}
@@ -801,7 +801,7 @@ export default function ProfessionalExperience() {
   };
 
   return (
-    <section id="experience" className="min-h-screen py-20 px-4 bg-gradient-to-b from-[#0a0a0a] to-[#1a1a1a]">
+    <section id="experience" className="min-h-screen py-14 sm:py-20 px-4 bg-gradient-to-b from-[#0a0a0a] to-[#1a1a1a] scroll-mt-20">
       <div
         ref={ref}
         className={`max-w-[1200px] mx-auto transition-all duration-1000 ${
@@ -809,8 +809,8 @@ export default function ProfessionalExperience() {
         }`}
       >
         <div className="grid lg:grid-cols-[40%_60%] gap-16 items-start">
-          {/* Left Side Illustration */}
-          <div className="flex flex-col items-center lg:sticky lg:top-20 space-y-6">
+          {/* Left Side Illustration — hidden on mobile */}
+          <div className="hidden lg:flex flex-col items-center lg:sticky lg:top-20 space-y-6">
             <div className="relative">
               <CurrentIllustration />
               <div className="absolute -inset-4 bg-gradient-to-br from-[#00ff88]/20 to-[#0088ff]/20 rounded-full blur-2xl opacity-30 animate-pulse"></div>

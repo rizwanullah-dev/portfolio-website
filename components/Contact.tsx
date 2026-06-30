@@ -96,13 +96,13 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 relative overflow-hidden">
+    <section id="contact" className="py-16 sm:py-20 lg:py-20 relative overflow-hidden scroll-mt-20">
       {/* Background Decor */}
       <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#00ff88]/5 rounded-full blur-[120px] -z-10" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#00ccff]/5 rounded-full blur-[120px] -z-10" />
 
       <div className="container">
-        <div className="text-center space-y-4 mb-20">
+        <div className="text-center space-y-4 mb-12 sm:mb-16 lg:mb-20">
           <h2 className="text-gradient-primary">Get In Touch</h2>
           <p className="text-gray-500 max-w-2xl mx-auto">
             Let&apos;s build something great together. I&apos;m currently open to full-stack engineering roles and freelance opportunities.
@@ -145,7 +145,7 @@ export default function Contact() {
           </div>
 
           {/* Contact Form */}
-          <div className="glass-card p-8 sm:p-10 rounded-2xl relative">
+          <div className="glass-card p-6 sm:p-10 rounded-2xl relative">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
@@ -158,8 +158,8 @@ export default function Contact() {
                     onChange={handleInputChange}
                     placeholder="Rizwan Ullah"
                     className={`w-full p-4 bg-white/5 border rounded-xl text-white placeholder-gray-600 focus:outline-none focus:bg-white/10 transition-all ${errors.name
-                        ? 'border-red-500/50 focus:border-red-500'
-                        : 'border-white/10 focus:border-[#00ff88]/50'
+                      ? 'border-red-500/50 focus:border-red-500'
+                      : 'border-white/10 focus:border-[#00ff88]/50'
                       }`}
                     required
                   />
@@ -174,8 +174,8 @@ export default function Contact() {
                     onChange={handleInputChange}
                     placeholder="rizwanullah@example.com"
                     className={`w-full p-4 bg-white/5 border rounded-xl text-white placeholder-gray-600 focus:outline-none focus:bg-white/10 transition-all ${errors.email
-                        ? 'border-red-500/50 focus:border-red-500'
-                        : 'border-white/10 focus:border-[#00ff88]/50'
+                      ? 'border-red-500/50 focus:border-red-500'
+                      : 'border-white/10 focus:border-[#00ff88]/50'
                       }`}
                     required
                   />
@@ -192,8 +192,8 @@ export default function Contact() {
                   onChange={handleInputChange}
                   placeholder="Tell me about your project..."
                   className={`w-full p-4 bg-white/5 border rounded-xl text-white placeholder-gray-600 focus:outline-none focus:bg-white/10 transition-all resize-none ${errors.message
-                      ? 'border-red-500/50 focus:border-red-500'
-                      : 'border-white/10 focus:border-[#00ff88]/50'
+                    ? 'border-red-500/50 focus:border-red-500'
+                    : 'border-white/10 focus:border-[#00ff88]/50'
                     }`}
                   required
                 ></textarea>
@@ -215,8 +215,8 @@ export default function Contact() {
                 type="submit"
                 disabled={isSubmitting || submitSuccess}
                 className={`w-full group py-4 font-bold rounded-xl transition-all duration-300 flex items-center justify-center gap-3 ${submitSuccess
-                    ? 'bg-emerald-500 text-white shadow-[0_0_30px_rgba(16,185,129,0.4)]'
-                    : 'bg-[#00ff88] text-[#0a0a0a] hover:shadow-[0_0_30px_rgba(0,255,136,0.4)] hover:-translate-y-0.5'
+                  ? 'bg-emerald-500 text-white shadow-[0_0_30px_rgba(16,185,129,0.4)]'
+                  : 'bg-[#00ff88] text-[#0a0a0a] hover:shadow-[0_0_30px_rgba(0,255,136,0.4)] hover:-translate-y-0.5'
                   } disabled:opacity-50 disabled:cursor-not-allowed`}
               >
                 {isSubmitting ? (

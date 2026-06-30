@@ -92,7 +92,7 @@ export default function Projects() {
   ];
 
   return (
-    <section id="projects" className="py-24 relative overflow-hidden">
+    <section id="projects" className="py-16 sm:py-20 lg:py-20 relative overflow-hidden scroll-mt-20">
       {/* Background Decor */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full -z-10 opacity-20">
         <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#00ff88]/5 rounded-full blur-[120px]" />
@@ -100,7 +100,7 @@ export default function Projects() {
       </div>
 
       <div className="container">
-        <div className="text-center space-y-4 mb-20">
+        <div className="text-center space-y-4 mb-12 sm:mb-16 lg:mb-20">
           <h2 className="text-gradient-primary">Featured Projects</h2>
           <p className="text-gray-500 max-w-2xl mx-auto">
             A showcase of my recent work, blending technical complexity with intuitive design.
@@ -177,7 +177,7 @@ function ProjectCard({
       className={`
         glass-card p-8 rounded-2xl relative overflow-hidden group
         transition-all duration-700 ease-out
-        ${project.flagship ? 'md:col-span-2' : ''}
+        ${project.flagship ? 'col-span-1 md:col-span-2' : 'col-span-1'}
         ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}
       `}
       style={{

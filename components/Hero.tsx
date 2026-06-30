@@ -60,7 +60,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-[100svh] flex items-center pt-20 pb-16 overflow-hidden"
+      className="relative min-h-[100svh] flex items-center pt-20 pb-10 sm:pb-16 overflow-hidden"
     >
       {/* Background Glows */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
